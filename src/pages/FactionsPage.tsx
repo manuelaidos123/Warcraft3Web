@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
 import { factions } from "../data/factions";
+import { useParallaxLayers } from "../hooks/useParallax";
 import type { Faction } from "../data/factions";
 
 function FactionImage({ src, alt }: { src: string; alt: string }) {
@@ -63,11 +64,20 @@ function FactionDetail({ faction, onClose }: { faction: Faction; onClose: () => 
 
 export function FactionsPage() {
   const [selectedFaction, setSelectedFaction] = useState<Faction | null>(null);
+  const { bgRef, contentRef, bgOffset, contentOffset, opacity } = useParallaxLayers();
 
   return (
     <div className="factions-page">
-      <section className="page-hero" style={{ background: "linear-gradient(135deg, #6e1a1a 0%, #1a1a2e 50%, #1a3a6e 100%)" }}>
-        <div className="container">
+      <section className="page-hero parallax-hero" style={{ background: "linear-gradient(135deg, #6e1a1a 0%, #1a1a2e 50%, #1a3a6e 100%)" }}>
+        <div className="parallax-bg" ref={bgRef} style={{ transform: `translateY(${bgOffset}px)` }}>
+          <div className="parallax-decoration parallax-orbs">
+            <span className="parallax-orb" style={{ left: "15%", top: "30%", background: "#2f89fc", animationDelay: "0s" }} />
+            <span className="parallax-orb" style={{ left: "75%", top: "25%", background: "#c41e3a", animationDelay: "1s" }} />
+            <span className="parallax-orb" style={{ left: "30%", top: "65%", background: "#8b5cf6", animationDelay: "2s" }} />
+            <span className="parallax-orb" style={{ left: "80%", top: "70%", background: "#10b981", animationDelay: "3s" }} />
+          </div>
+        </div>
+        <div className="container parallax-content" ref={contentRef} style={{ transform: `translateY(${contentOffset}px)`, opacity }}>
           <h1 className="page-hero-title">Factions of Warcraft III</h1>
           <p className="page-hero-subtitle">Four mighty factions vie for dominance over the world of Azeroth</p>
         </div>
