@@ -6,6 +6,7 @@ import {
   factionGradients,
   roleLabels,
 } from "../data/characters";
+import { useParallaxLayers } from "../hooks/useParallax";
 import type { Character } from "../data/characters";
 
 function CharacterImage({
@@ -199,6 +200,7 @@ export function CharactersPage() {
   const [roleFilter, setRoleFilter] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null);
+  const { bgRef, contentRef, bgOffset, contentOffset, opacity } = useParallaxLayers();
 
   const filteredCharacters = useMemo(() => {
     return characters.filter((c) => {
@@ -215,8 +217,14 @@ export function CharactersPage() {
 
   return (
     <div className="characters-page">
-      <section className="page-hero" style={{ background: "linear-gradient(135deg, #1a3a6e 0%, #1a1a2e 50%, #6e1a1a 100%)" }}>
-        <div className="container">
+      <section className="page-hero parallax-hero" style={{ background: "linear-gradient(135deg, #1a3a6e 0%, #1a1a2e 50%, #6e1a1a 100%)" }}>
+        <div className="parallax-bg" ref={bgRef} style={{ transform: `translateY(${bgOffset}px)` }}>
+          <div className="parallax-decoration parallax-swords">
+            <span style={{ left: "20%", top: "35%", animationDelay: "0s" }}>⚔</span>
+            <span style={{ left: "80%", top: "45%", animationDelay: "2s" }}>⚔</span>
+          </div>
+        </div>
+        <div className="container parallax-content" ref={contentRef} style={{ transform: `translateY(${contentOffset}px)`, opacity }}>
           <h1 className="page-hero-title">Characters of Warcraft III</h1>
           <p className="page-hero-subtitle">Meet the legendary heroes and villains who shaped Azeroth</p>
         </div>
