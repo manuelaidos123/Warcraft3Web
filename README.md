@@ -9,7 +9,7 @@ A comprehensive, single-page web application dedicated to the lore, characters, 
 
 ---
 
-## 📖 Table of Contents
+## Table of Contents
 
 - [Overview](#overview)
 - [Features](#features)
@@ -20,6 +20,8 @@ A comprehensive, single-page web application dedicated to the lore, characters, 
 - [Build](#build)
 - [Architecture](#architecture)
 - [Accessibility](#accessibility)
+- [Design System](#design-system)
+- [Character Artwork Sources](#character-artwork-sources)
 - [Credits](#credits)
 - [License](#license)
 
@@ -31,7 +33,7 @@ This project is a fully functional, multi-page web application that serves as an
 
 ---
 
-## ✨ Features
+## Features
 
 - 🏠 **Landing Page** — Cinematic hero section with animated gradients and call-to-action buttons
 - 📜 **Campaign Story** — Full narrative of both Reign of Chaos and The Frozen Throne with a visual timeline
@@ -47,7 +49,7 @@ This project is a fully functional, multi-page web application that serves as an
 
 ---
 
-## 📄 Pages
+## Pages
 
 | Route | Page | Description |
 |-------|------|-------------|
@@ -61,7 +63,7 @@ This project is a fully functional, multi-page web application that serves as an
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Technology | Purpose |
 |-----------|---------|
@@ -76,7 +78,7 @@ This project is a fully functional, multi-page web application that serves as an
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 ├── index.html                    # HTML entry point
@@ -113,7 +115,7 @@ This project is a fully functional, multi-page web application that serves as an
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -146,7 +148,7 @@ npm run preview   # Preview the production build locally
 
 ---
 
-## 📦 Build
+## Build
 
 ```bash
 npm run build
@@ -156,7 +158,7 @@ This generates a single `dist/index.html` file that contains all JavaScript, CSS
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ### Routing
 
@@ -198,7 +200,7 @@ Character and faction artwork is loaded from the **HearthstoneJSON Art API** (`a
 
 ---
 
-## ♿ Accessibility
+## Accessibility
 
 The application follows WAI-ARIA best practices:
 
@@ -214,7 +216,7 @@ The application follows WAI-ARIA best practices:
 
 ---
 
-## 🎨 Design System
+## Design System
 
 ### Colors
 
@@ -237,7 +239,7 @@ The application follows WAI-ARIA best practices:
 
 ---
 
-## 🖼️ Character Artwork Sources
+## Character Artwork Sources
 
 All character art is sourced from the [HearthstoneJSON Art API](https://hearthstonejson.com/):
 
@@ -258,7 +260,7 @@ All character art is sourced from the [HearthstoneJSON Art API](https://hearthst
 
 ---
 
-## 📝 Credits
+## Credits
 
 - **Game:** Warcraft III: Reign of Chaos & The Frozen Throne by Blizzard Entertainment
 - **Artwork:** Character art via [HearthstoneJSON](https://hearthstonejson.com/)
@@ -267,7 +269,7 @@ All character art is sourced from the [HearthstoneJSON Art API](https://hearthst
 
 ---
 
-## 📜 License
+## License
 
 This is a fan-made project for educational purposes. Warcraft III, its characters, lore, and artwork are the property of **Blizzard Entertainment**. This project is not affiliated with or endorsed by Blizzard Entertainment.
 
