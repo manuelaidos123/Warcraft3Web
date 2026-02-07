@@ -1,4 +1,5 @@
 import { useState, useCallback } from "react";
+import { useParallaxLayers } from "../hooks/useParallax";
 
 interface Question {
   id: number;
@@ -171,6 +172,25 @@ export function TestPage() {
     setAnswers([]);
   }, []);
 
+  const { bgRef, contentRef, bgOffset, contentOffset, opacity } = useParallaxLayers();
+
+  const heroStyle = { background: "linear-gradient(135deg, #1a1a2e 0%, #6e1a1a 50%, #16213e 100%)" };
+
+  const renderHero = (title: string, subtitle: string, isSmall?: boolean) => (
+    <section className={`page-hero parallax-hero ${isSmall ? "page-hero-sm" : ""}`} style={heroStyle}>
+      <div className="parallax-bg" ref={bgRef} style={{ transform: `translateY(${bgOffset}px)` }}>
+        <div className="parallax-decoration parallax-questions">
+          <span style={{ left: "15%", top: "30%", animationDelay: "0s" }}>❓</span>
+          <span style={{ left: "85%", top: "40%", animationDelay: "1.5s" }}>❓</span>
+        </div>
+      </div>
+      <div className="container parallax-content" ref={contentRef} style={{ transform: `translateY(${contentOffset}px)`, opacity }}>
+        <h1 className={`page-hero-title ${isSmall ? "page-hero-title-sm" : ""}`}>{title}</h1>
+        {subtitle && <p className="page-hero-subtitle">{subtitle}</p>}
+      </div>
+    </section>
+  );
+
   const getScoreMessage = () => {
     const pct = (score / questions.length) * 100;
     if (pct === 100) return { title: "Perfect Score! 🏆", msg: "You are a true Warcraft III master! Lok'tar Ogar!", color: "#ffd700" };
@@ -183,12 +203,7 @@ export function TestPage() {
   if (!started) {
     return (
       <div className="test-page">
-        <section className="page-hero" style={{ background: "linear-gradient(135deg, #1a1a2e 0%, #6e1a1a 50%, #16213e 100%)" }}>
-          <div className="container">
-            <h1 className="page-hero-title">Warcraft III Knowledge Test</h1>
-            <p className="page-hero-subtitle">How well do you know the lore of Warcraft III?</p>
-          </div>
-        </section>
+        {renderHero("Warcraft III Knowledge Test", "How well do you know the lore of Warcraft III?")}
         <div className="container main-content-inner">
           <div className="test-intro">
             <div className="test-intro-icon">⚔️</div>
@@ -213,12 +228,7 @@ export function TestPage() {
     const result = getScoreMessage();
     return (
       <div className="test-page">
-        <section className="page-hero" style={{ background: "linear-gradient(135deg, #1a1a2e 0%, #6e1a1a 50%, #16213e 100%)" }}>
-          <div className="container">
-            <h1 className="page-hero-title">Quiz Results</h1>
-            <p className="page-hero-subtitle">See how you did!</p>
-          </div>
-        </section>
+        {renderHero("Quiz Results", "See how you did!")}
         <div className="container main-content-inner">
           <div className="test-results">
             <div className="test-score-circle" style={{ borderColor: result.color }}>
@@ -274,11 +284,7 @@ export function TestPage() {
 
   return (
     <div className="test-page">
-      <section className="page-hero page-hero-sm" style={{ background: "linear-gradient(135deg, #1a1a2e 0%, #6e1a1a 50%, #16213e 100%)" }}>
-        <div className="container">
-          <h1 className="page-hero-title page-hero-title-sm">Knowledge Test</h1>
-        </div>
-      </section>
+      {renderHero("Knowledge Test", "", true)}
       <div className="container main-content-inner">
         <div className="test-quiz">
           {/* Progress */}
