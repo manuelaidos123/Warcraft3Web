@@ -1967,6 +1967,568 @@ hr {
 }
 
 /* ===========================
+   TIMELINE PAGE
+   =========================== */
+.tl-hero-stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  position: relative;
+}
+
+.tl-hero-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tl-hero-stat-number {
+  font-family: "Abyssinica SIL", serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffd700;
+  line-height: 1;
+}
+
+.tl-hero-stat-label {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.tl-hero-stat-divider {
+  width: 1px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Era Filters */
+.tl-era-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.tl-era-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 999px;
+  background: #fff;
+  color: #6b7280;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s;
+  font-family: "Raleway", sans-serif;
+}
+
+.tl-era-filter-btn:hover {
+  border-color: #9ca3af;
+  color: #374151;
+  transform: translateY(-1px);
+}
+
+.tl-era-filter-btn.active {
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transform: translateY(-1px);
+}
+
+.tl-event-count {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #9ca3af;
+  margin-bottom: 2rem;
+}
+
+.tl-clear-filter {
+  background: none;
+  border: none;
+  color: #ef4444;
+  font-size: 0.85rem;
+  cursor: pointer;
+  margin-left: 0.5rem;
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.tl-clear-filter:hover {
+  color: #dc2626;
+}
+
+/* Timeline container */
+.tl-timeline {
+  position: relative;
+  padding: 2rem 0 4rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Vertical line */
+.tl-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  transform: translateX(-50%);
+}
+
+.tl-line-gradient {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    #a855f7 0%,
+    #f59e0b 20%,
+    #ef4444 40%,
+    #c41e3a 55%,
+    #2f89fc 65%,
+    #10b981 75%,
+    #8b5cf6 90%,
+    #3b82f6 100%
+  );
+  border-radius: 2px;
+  opacity: 0.4;
+}
+
+/* Start/End caps */
+.tl-cap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 0;
+  z-index: 2;
+}
+
+.tl-cap-start {
+  margin-bottom: 1rem;
+}
+
+.tl-cap-end {
+  margin-top: 1rem;
+}
+
+.tl-cap-dot {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ffd700, #f59e0b);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1rem;
+  box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3), 0 0 0 6px rgba(255, 215, 0, 0.1);
+  position: relative;
+  z-index: 2;
+}
+
+.tl-cap-dot-end {
+  background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+  box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3), 0 0 0 6px rgba(139, 92, 246, 0.1);
+}
+
+.tl-cap-label {
+  font-family: "Abyssinica SIL", serif;
+  font-size: 1rem;
+  color: #9ca3af;
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+/* Era Dividers */
+.tl-era-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 3rem 0 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.tl-era-divider-line {
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  background: linear-gradient(90deg, transparent, #e5e7eb, transparent);
+}
+
+.tl-era-divider-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.5rem;
+  border-radius: 999px;
+  color: #fff;
+  font-family: "Abyssinica SIL", serif;
+  font-size: 1rem;
+  font-weight: 700;
+  white-space: nowrap;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Individual event */
+.tl-event {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 3rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.tl-event-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tl-event-left {
+  flex-direction: row;
+  padding-right: calc(50% + 40px);
+}
+
+.tl-event-right {
+  flex-direction: row-reverse;
+  padding-left: calc(50% + 40px);
+}
+
+/* Date marker (on the center line) */
+.tl-date-marker {
+  position: absolute;
+  left: 50%;
+  top: 1.5rem;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 3;
+}
+
+.tl-marker-dot {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 0.85rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border: 3px solid #fff;
+}
+
+.tl-event:hover .tl-marker-dot {
+  transform: scale(1.15);
+}
+
+.tl-year-label {
+  font-family: "Abyssinica SIL", serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  white-space: nowrap;
+  margin-top: 0.35rem;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+/* Connector from card to dot */
+.tl-connector {
+  display: none;
+}
+
+/* Card */
+.tl-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+  border: 2px solid transparent;
+  width: 100%;
+  position: relative;
+}
+
+.tl-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+.tl-card:focus {
+  outline: 3px solid #2f89fc;
+  outline-offset: 2px;
+}
+
+.tl-card-expanded {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.tl-card-accent {
+  height: 4px;
+  width: 100%;
+}
+
+/* Card image */
+.tl-card-image-wrap {
+  height: 180px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+}
+
+.tl-event-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.tl-card:hover .tl-event-img {
+  transform: scale(1.05);
+}
+
+/* Card body */
+.tl-card-body {
+  padding: 1.25rem 1.5rem 1rem;
+}
+
+.tl-era-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.6rem;
+}
+
+.tl-card-title {
+  font-family: "Abyssinica SIL", serif;
+  font-size: 1.3rem;
+  color: #1a1a2e;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.tl-card-summary {
+  font-size: 0.92rem;
+  color: #6b7280;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+
+/* Expanded details */
+.tl-card-details {
+  animation: tl-expand 0.4s ease;
+}
+
+@keyframes tl-expand {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 1000px;
+  }
+}
+
+.tl-card-detail-text {
+  font-size: 0.92rem;
+  color: #4b5563;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #f3f4f6;
+}
+
+.tl-characters-section {
+  margin-bottom: 0.75rem;
+}
+
+.tl-characters-heading {
+  font-family: "Abyssinica SIL", serif;
+  font-size: 0.95rem;
+  color: #374151;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tl-characters-heading i {
+  font-size: 0.85rem;
+}
+
+.tl-characters-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tl-character-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.tl-character-tag i {
+  font-size: 0.7rem;
+}
+
+/* Expand hint */
+.tl-expand-hint {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  transition: opacity 0.2s;
+}
+
+.tl-card:hover .tl-expand-hint {
+  opacity: 1;
+}
+
+/* ===========================
+   TIMELINE - Mobile Responsive
+   =========================== */
+@media (max-width: 991px) {
+  .tl-timeline {
+    padding: 1rem 0 3rem;
+  }
+
+  .tl-line {
+    left: 24px;
+  }
+
+  .tl-event-left,
+  .tl-event-right {
+    flex-direction: row;
+    padding-right: 0;
+    padding-left: 68px;
+  }
+
+  .tl-date-marker {
+    left: 24px;
+    top: 1rem;
+  }
+
+  .tl-marker-dot {
+    width: 32px;
+    height: 32px;
+    font-size: 0.7rem;
+    border-width: 2px;
+  }
+
+  .tl-year-label {
+    font-size: 0.65rem;
+    position: absolute;
+    left: 42px;
+    top: 4px;
+    white-space: nowrap;
+  }
+
+  .tl-cap-dot {
+    width: 36px;
+    height: 36px;
+    font-size: 0.85rem;
+  }
+
+  .tl-cap {
+    margin-left: 4px;
+  }
+
+  .tl-era-divider {
+    margin: 2rem 0 1.5rem;
+    padding-left: 48px;
+  }
+
+  .tl-era-divider-line:first-child {
+    display: none;
+  }
+
+  .tl-era-divider-content {
+    font-size: 0.85rem;
+    padding: 0.45rem 1rem;
+  }
+
+  .tl-card-image-wrap {
+    height: 150px;
+  }
+
+  .tl-card-title {
+    font-size: 1.1rem;
+  }
+
+  .tl-hero-stats {
+    gap: 1rem;
+  }
+
+  .tl-hero-stat-number {
+    font-size: 1.5rem;
+  }
+
+  .tl-hero-stat-label {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .tl-era-filters {
+    gap: 0.35rem;
+  }
+
+  .tl-era-filter-btn {
+    padding: 0.45rem 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  .tl-era-filter-btn span {
+    display: none;
+  }
+
+  .tl-event-left,
+  .tl-event-right {
+    padding-left: 56px;
+  }
+
+  .tl-card-body {
+    padding: 1rem;
+  }
+
+  .tl-card-title {
+    font-size: 1rem;
+  }
+
+  .tl-card-summary {
+    font-size: 0.85rem;
+  }
+}
+
+/* ===========================
    Footer
    =========================== */
 .site-footer {
