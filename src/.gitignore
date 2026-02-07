@@ -1,0 +1,19 @@
+# files
+.env
+*.log
+*.tmp
+
+# folders
+node_modules/
+dist/
+build/
+
+# OS / editor
+.DS_Store
+.vscode/
+
+# ignore all in folder
+secrets/
+
+# but keep one file
+!secrets/README.md
