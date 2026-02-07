@@ -49,7 +49,7 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
               </li>
               <li className="nav-item dropdown-parent">
                 <a
-                  className={`nav-link ${currentPage === "story" || currentPage === "guide" ? "active" : ""}`}
+                  className={`nav-link ${currentPage === "story" || currentPage === "guide" || currentPage === "timeline" ? "active" : ""}`}
                   href="#story"
                   onClick={(e) => { e.preventDefault(); handleNav("story"); }}
                 >
@@ -76,6 +76,13 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
                   <li>
                     <a className="dropdown-item" href="#guide" onClick={(e) => { e.preventDefault(); handleNav("guide"); }}>
                       Campaign Guide
+                    </a>
+                  </li>
+                  <li><hr className="dropdown-divider" /></li>
+                  <li>
+                    <a className="dropdown-item" href="#timeline" onClick={(e) => { e.preventDefault(); handleNav("timeline"); }}>
+                      <i className="fas fa-hourglass-half" aria-hidden="true" style={{ marginRight: "0.35rem" }}></i>
+                      Interactive Timeline
                     </a>
                   </li>
                 </ul>
@@ -108,6 +115,16 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
                   {...(currentPage === "pedia" ? { "aria-current": "page" as const } : {})}
                 >
                   WarcraftPedia
+                </a>
+              </li>
+              <li className="nav-item">
+                <a
+                  className={`nav-link ${currentPage === "timeline" ? "active" : ""}`}
+                  href="#timeline"
+                  onClick={(e) => { e.preventDefault(); handleNav("timeline"); }}
+                  {...(currentPage === "timeline" ? { "aria-current": "page" as const } : {})}
+                >
+                  Timeline
                 </a>
               </li>
               <li className="nav-item">
