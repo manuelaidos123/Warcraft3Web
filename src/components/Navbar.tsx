@@ -64,12 +64,7 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
                   <li><hr className="dropdown-divider" /></li>
                   <li>
                     <a className="dropdown-item" href="#story-reign" onClick={(e) => { e.preventDefault(); handleNav("story"); }}>
-                      Reign of Chaos
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#story-frozen" onClick={(e) => { e.preventDefault(); handleNav("story"); }}>
-                      The Frozen Throne
+                      Reign of Chaos and Frozen Throne
                     </a>
                   </li>
                   <li><hr className="dropdown-divider" /></li>
