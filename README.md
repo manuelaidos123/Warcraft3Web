@@ -45,6 +45,7 @@ This project is a fully functional, multi-page web application that serves as an
 - ❓ **Knowledge Quiz** — 15 multiple-choice lore questions with scoring, explanations, and full answer review
 - 🖼️ **Real Character Art** — High-quality artwork from the HearthstoneJSON art API
 - ♿ **Accessible** — ARIA roles, labels, keyboard navigation, and semantic HTML throughout
+- 🌀 **Parallax Scrolling** — Multi-layer depth effects on all hero sections with floating decorative elements and scroll-based fade-out
 - 📱 **Fully Responsive** — Mobile-first design that works on all screen sizes
 - ⚡ **Single-File Build** — Entire app compiles into one `index.html` file via `vite-plugin-singlefile`
 
@@ -101,6 +102,9 @@ This project is a fully functional, multi-page web application that serves as an
     ├── data/
     │   ├── characters.ts         # Character data, faction colors, role labels
     │   └── factions.ts           # Faction data with lore, units, and strengths
+    │
+    ├── hooks/
+    │   └── useParallax.ts        # Custom React hook for parallax scroll effects (multi-layer support)
     │
     ├── pages/
     │   ├── HomePage.tsx          # Landing page with hero, features, and CTAs
@@ -192,6 +196,20 @@ The entire app is styled with **custom CSS** in `src/index.css`, organized into 
 6. **Page-Specific** — Styles scoped by page (Home, Story, Guide, etc.)
 7. **Footer** — Site footer with links and social icons
 8. **Responsive** — Mobile breakpoints at 767px and 991px
+
+### Parallax Scrolling
+
+All 8 pages feature **multi-layer parallax hero sections** powered by a custom `useParallax` hook (`src/hooks/useParallax.ts`):
+
+- **`useParallax(speed)`** — Tracks scroll position and returns a Y-offset multiplied by the speed factor
+- **`useParallaxLayers()`** — Provides refs for 3 depth layers (background 0.3×, midground 0.5×, foreground 0.15×) plus scroll-based opacity fade
+
+Each hero section has:
+- A **background layer** that scrolls slower than the page (creating depth)
+- A **content layer** that scrolls slightly slower with opacity fade-out
+- **Decorative floating elements** unique to each page (stars, runes, orbs, swords, books, question marks, hourglasses)
+- **`will-change: transform`** for GPU-accelerated rendering
+- **`@media (prefers-reduced-motion: reduce)`** to disable all animations for accessibility
 
 ### Image Strategy
 
