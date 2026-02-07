@@ -57,6 +57,9 @@ export function Footer({ onNavigate }: FooterProps) {
               <li>
                 <a href="#pedia" onClick={(e) => { e.preventDefault(); onNavigate("pedia"); }}>WarcraftPedia</a>
               </li>
+              <li>
+                <a href="#timeline" onClick={(e) => { e.preventDefault(); onNavigate("timeline"); }}>Timeline</a>
+              </li>
             </ul>
           </div>
         </div>
