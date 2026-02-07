@@ -1,8 +1,20 @@
+import { useParallaxLayers } from "../hooks/useParallax";
+
 export function StoryPage() {
+  const { bgRef, contentRef, bgOffset, contentOffset, opacity } = useParallaxLayers();
+
   return (
     <div className="story-page">
-      <section className="page-hero" style={{ background: "linear-gradient(135deg, #1a1a2e 0%, #2d1a4e 50%, #16213e 100%)" }}>
-        <div className="container">
+      <section className="page-hero parallax-hero" style={{ background: "linear-gradient(135deg, #1a1a2e 0%, #2d1a4e 50%, #16213e 100%)" }}>
+        <div className="parallax-bg" ref={bgRef} style={{ transform: `translateY(${bgOffset}px)` }}>
+          <div className="parallax-decoration parallax-runes">
+            <span style={{ left: "10%", top: "20%", animationDelay: "0s" }}>✦</span>
+            <span style={{ left: "85%", top: "30%", animationDelay: "1.5s" }}>◆</span>
+            <span style={{ left: "25%", top: "70%", animationDelay: "3s" }}>✧</span>
+            <span style={{ left: "70%", top: "60%", animationDelay: "0.8s" }}>✦</span>
+          </div>
+        </div>
+        <div className="container parallax-content" ref={contentRef} style={{ transform: `translateY(${contentOffset}px)`, opacity }}>
           <h1 className="page-hero-title">The Story of Warcraft III</h1>
           <p className="page-hero-subtitle">An epic saga of heroes, betrayal, and the battle for Azeroth</p>
         </div>
