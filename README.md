@@ -92,7 +92,7 @@ This project is a fully functional, multi-page web application that serves as an
 └── src/
     ├── main.tsx                  # React DOM entry point
     ├── App.tsx                   # Root component with hash-based router
-    ├── index.css                 # All global styles (~1200 lines)
+    ├── index.css                 # All global styles (~1800 lines)
     │
     ├── components/
     │   ├── Navbar.tsx            # Shared navigation bar with dropdown
@@ -101,7 +101,8 @@ This project is a fully functional, multi-page web application that serves as an
     ├── data/
     │   ├── characters.ts         # Character data, faction colors, role labels
     │   └── factions.ts           # Faction data with lore, units, and strengths
-    │   ├── pages/
+    │
+    ├── pages/
     │   ├── HomePage.tsx          # Landing page with hero, features, and CTAs
     │   ├── StoryPage.tsx         # Campaign narrative with visual timeline
     │   ├── TimelinePage.tsx      # Interactive timeline with 21 events, 4 eras, scroll animations
