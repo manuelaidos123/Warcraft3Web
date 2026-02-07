@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import { useParallaxLayers } from "../hooks/useParallax";
 
 interface PediaEntry {
   id: number;
@@ -91,6 +92,7 @@ export function PediaPage() {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All");
   const [selectedEntry, setSelectedEntry] = useState<PediaEntry | null>(null);
+  const { bgRef, contentRef, bgOffset, contentOffset, opacity } = useParallaxLayers();
 
   const filtered = useMemo(() => {
     return entries.filter(e => {
@@ -109,8 +111,15 @@ export function PediaPage() {
 
   return (
     <div className="pedia-page">
-      <section className="page-hero" style={{ background: "linear-gradient(135deg, #1a1a2e 0%, #4a1a6e 50%, #16213e 100%)" }}>
-        <div className="container">
+      <section className="page-hero parallax-hero" style={{ background: "linear-gradient(135deg, #1a1a2e 0%, #4a1a6e 50%, #16213e 100%)" }}>
+        <div className="parallax-bg" ref={bgRef} style={{ transform: `translateY(${bgOffset}px)` }}>
+          <div className="parallax-decoration parallax-books">
+            <span style={{ left: "12%", top: "25%", animationDelay: "0s" }}>📖</span>
+            <span style={{ left: "78%", top: "35%", animationDelay: "1.5s" }}>📜</span>
+            <span style={{ left: "50%", top: "65%", animationDelay: "3s" }}>🔮</span>
+          </div>
+        </div>
+        <div className="container parallax-content" ref={contentRef} style={{ transform: `translateY(${contentOffset}px)`, opacity }}>
           <h1 className="page-hero-title">WarcraftPedia</h1>
           <p className="page-hero-subtitle">Your comprehensive encyclopedia of Warcraft III lore</p>
         </div>
