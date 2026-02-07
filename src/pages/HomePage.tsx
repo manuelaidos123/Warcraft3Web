@@ -1,6 +1,7 @@
 import { useState, useCallback } from "react";
 import { characters, factionColors } from "../data/characters";
 import { factions } from "../data/factions";
+import { useParallaxLayers } from "../hooks/useParallax";
 
 interface HomePageProps {
   onNavigate: (page: string) => void;
@@ -15,13 +16,19 @@ function CharImage({ src, alt }: { src: string; alt: string }) {
 
 export function HomePage({ onNavigate }: HomePageProps) {
   const featuredChars = characters.filter(c => [1, 2, 4, 11].includes(c.id));
+  const { bgRef, contentRef, bgOffset, contentOffset, opacity } = useParallaxLayers();
 
   return (
     <div className="home-page">
       {/* Hero Section */}
-      <section className="hero-section">
-        <div className="hero-overlay"></div>
-        <div className="container hero-content">
+      <section className="hero-section parallax-hero">
+        <div className="hero-overlay parallax-bg" ref={bgRef} style={{ transform: `translateY(${bgOffset}px)` }}></div>
+        <div className="parallax-stars" style={{ transform: `translateY(${bgOffset * 1.5}px)`, opacity }}>
+          {Array.from({ length: 12 }).map((_, i) => (
+            <div key={i} className="parallax-particle" style={{ left: `${8 + (i * 7.5) % 90}%`, top: `${10 + (i * 13) % 75}%`, animationDelay: `${i * 0.4}s` }} />
+          ))}
+        </div>
+        <div className="container hero-content parallax-content" ref={contentRef} style={{ transform: `translateY(${contentOffset}px)`, opacity }}>
           <h1 className="hero-title">Warcraft III</h1>
           <p className="hero-subtitle">Reign of Chaos &amp; The Frozen Throne</p>
           <p className="hero-desc">
