@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useParallaxLayers } from "../hooks/useParallax";
 
 interface GuideSection {
   id: string;
@@ -144,11 +145,15 @@ const guideSections: GuideSection[] = [
 export function GuidePage() {
   const [activeSection, setActiveSection] = useState("general");
   const section = guideSections.find(s => s.id === activeSection) || guideSections[0];
+  const { bgRef, contentRef, bgOffset, contentOffset, opacity } = useParallaxLayers();
 
   return (
     <div className="guide-page">
-      <section className="page-hero" style={{ background: "linear-gradient(135deg, #1a1a2e 0%, #0d3320 50%, #16213e 100%)" }}>
-        <div className="container">
+      <section className="page-hero parallax-hero" style={{ background: "linear-gradient(135deg, #1a1a2e 0%, #0d3320 50%, #16213e 100%)" }}>
+        <div className="parallax-bg" ref={bgRef} style={{ transform: `translateY(${bgOffset}px)` }}>
+          <div className="parallax-decoration parallax-grid-dots" />
+        </div>
+        <div className="container parallax-content" ref={contentRef} style={{ transform: `translateY(${contentOffset}px)`, opacity }}>
           <h1 className="page-hero-title">Campaign Guide</h1>
           <p className="page-hero-subtitle">Master the art of war with strategies for every faction</p>
         </div>
