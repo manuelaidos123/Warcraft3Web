@@ -37,6 +37,7 @@ This project is a fully functional, multi-page web application that serves as an
 
 - 🏠 **Landing Page** — Cinematic hero section with animated gradients and call-to-action buttons
 - 📜 **Campaign Story** — Full narrative of both Reign of Chaos and The Frozen Throne with a visual timeline
+- ⏳ **Interactive Timeline** — Scroll-animated, 21-event visual timeline spanning 10,000+ years across 4 eras with era filtering, click-to-expand event cards, and character artwork
 - 🗺️ **Campaign Guide** — Tabbed strategy guide with faction-specific tips and a quick-reference comparison table
 - 🛡️ **Faction Profiles** — Detailed pages for Alliance, Horde, Undead Scourge, and Night Elves with unit rosters
 - 🧙 **Character Gallery** — 12 characters with real artwork, filterable by faction/role, and full-text search
@@ -55,6 +56,7 @@ This project is a fully functional, multi-page web application that serves as an
 |-------|------|-------------|
 | `#home` | **Home** | Landing page with hero section, featured characters, faction overview, and campaign teasers |
 | `#story` | **Story** | Complete narrative of both campaigns presented in a visual timeline format |
+| `#timeline` | **Timeline** | Interactive, scroll-animated timeline of 21 major events across 4 historical eras with filtering |
 | `#guide` | **Campaign Guide** | Strategy tips organized by faction with tabbed navigation and reference table |
 | `#factions` | **Factions** | Four faction cards with detailed modals containing lore, leaders, units, and strengths |
 | `#characters` | **Characters** | Filterable/searchable grid of 12 characters with artwork and detail modals |
@@ -99,10 +101,10 @@ This project is a fully functional, multi-page web application that serves as an
     ├── data/
     │   ├── characters.ts         # Character data, faction colors, role labels
     │   └── factions.ts           # Faction data with lore, units, and strengths
-    │
-    ├── pages/
+    │   ├── pages/
     │   ├── HomePage.tsx          # Landing page with hero, features, and CTAs
     │   ├── StoryPage.tsx         # Campaign narrative with visual timeline
+    │   ├── TimelinePage.tsx      # Interactive timeline with 21 events, 4 eras, scroll animations
     │   ├── GuidePage.tsx         # Strategy guide with tabbed faction tips
     │   ├── FactionsPage.tsx      # Faction cards with detail modals
     │   ├── CharactersPage.tsx    # Character grid with filters and modals
