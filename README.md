@@ -43,6 +43,7 @@ This project is a fully functional, multi-page web application that serves as an
 - 🧙 **Character Gallery** — 12 characters with real artwork, filterable by faction/role, and full-text search
 - 📚 **WarcraftPedia** — 12-entry encyclopedia covering artifacts, locations, events, and organizations
 - 🎬 **Cinematics & Videos** — Curated gallery of iconic Warcraft III cinematics organized by 12 characters, linking to YouTube searches for each scene
+- 🗺️ **Interactive Map** — Explore Azeroth with an interactive map featuring location markers, faction filtering, zoom/pan controls, and detailed location modals with lore
 - ❓ **Knowledge Quiz** — 15 multiple-choice lore questions with scoring, explanations, and full answer review
 - 📜 **Lore Snippets** — Interactive carousel of Warcraft III trivia with parchment-style design, navigation controls, and progress indicators
 - �️ **Real Character Art** — High-quality artwork from the HearthstoneJSON art API
@@ -65,6 +66,7 @@ This project is a fully functional, multi-page web application that serves as an
 | `#characters` | **Characters** | Filterable/searchable grid of 12 characters with artwork and detail modals |
 | `#pedia` | **WarcraftPedia** | Searchable encyclopedia with 12 entries across 4 categories |
 | `#cinematics` | **Cinematics** | Curated gallery of 30+ iconic cinematics across 12 characters with YouTube search links, filters, and campaign tags |
+| `#map` | **Interactive Map** | Exploreable map of Azeroth with location markers, faction filters, zoom/pan, and detailed location information |
 | `#test` | **Knowledge Test** | Interactive 15-question quiz with progress tracking and results review |
 
 ---
@@ -118,6 +120,7 @@ This project is a fully functional, multi-page web application that serves as an
     │   ├── CharactersPage.tsx    # Character grid with filters and modals
     │   ├── PediaPage.tsx         # Encyclopedia with search and category filters
     │   ├── CinematicsPage.tsx   # Curated cinematics gallery with YouTube search links
+    │   ├── MapPage.tsx          # Interactive map of Azeroth with location markers and modals
     │   └── TestPage.tsx          # Interactive quiz with scoring system
     │
     └── utils/
@@ -222,6 +225,21 @@ Character and faction artwork is loaded from the **HearthstoneJSON Art API** (`a
 - `loading="lazy"` for performance
 - `onError` fallback showing gradient background with character initials
 - `object-fit: cover` for consistent card sizing
+
+### Interactive Map
+
+The map page (`src/pages/MapPage.tsx`) provides an explorable view of Azeroth with:
+
+- **Base Map Image** — Classic Azeroth world map from Wowpedia with fallback images and CSS gradient background
+- **Location Markers** — Interactive markers positioned by percentage coordinates with hover tooltips
+- **Faction Filtering** — Filter locations by Alliance, Horde, Undead, Night Elf, or Neutral factions
+- **Zoom & Pan** — Mouse drag to pan, button controls for zoom (50%-300%) with reset option
+- **Location Modals** — Detailed modals with location descriptions, lore, related characters, and key events
+- **Marker Types** — Capitals (crown icon, pulse animation), cities, zones, and landmarks
+- **Responsive Design** — Adapts to mobile with touch-friendly controls
+- **Map Legend** — Faction color legend overlay for easy reference
+
+Map data is stored in `src/data/mapLocations.ts` with coordinates, descriptions, and faction associations.
 
 ---
 
