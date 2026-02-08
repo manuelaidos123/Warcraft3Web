@@ -3430,6 +3430,128 @@ hr {
   color: #fff;
 }
 
+/* Info Banner */
+.cin-info-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, #eff6ff, #eef2ff);
+  border: 1px solid #bfdbfe;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.92rem;
+  color: #1e40af;
+  line-height: 1.6;
+}
+
+.cin-info-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  margin-top: -0.1rem;
+}
+
+.cin-info-banner p {
+  margin: 0;
+}
+
+/* Thumbnail Art (character image with overlay) */
+.cin-thumbnail-art {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center top;
+  position: relative;
+  transition: transform 0.4s;
+}
+
+.cin-video-card:hover .cin-thumbnail-art {
+  transform: scale(1.05);
+}
+
+.cin-thumbnail-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.cin-video-card:hover .cin-thumbnail-overlay {
+  opacity: 1;
+}
+
+/* Chapter Tag */
+.cin-chapter-tag {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border: 2px solid;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-bottom: 0.5rem;
+}
+
+/* YouTube Search Link */
+.cin-yt-link {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 0.5rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #cc0000;
+  transition: color 0.2s;
+}
+
+.cin-video-card:hover .cin-yt-link {
+  color: #ff0000;
+}
+
+/* Playlist Banner */
+.cin-playlist-banner {
+  background: linear-gradient(135deg, #1a1a2e 0%, #2d1a4e 50%, #1a0a2e 100%);
+  border-radius: 16px;
+  padding: 3rem 2rem;
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.cin-playlist-content h3 {
+  font-size: 1.6rem;
+  color: #ffd700;
+  margin-bottom: 0.5rem;
+}
+
+.cin-playlist-content p {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 1.5rem;
+}
+
+.cin-playlist-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.85rem 2rem;
+  background: #ff0000;
+  color: #fff !important;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+}
+
+.cin-playlist-link:hover {
+  background: #cc0000;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 0, 0, 0.4);
+}
+
 /* Cinematics responsive */
 @media (max-width: 767px) {
   .cin-character-header {
@@ -3466,6 +3588,24 @@ hr {
 
   .cin-modal-info h3 {
     font-size: 1.15rem;
+  }
+
+  .cin-info-banner {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .cin-playlist-banner {
+    padding: 2rem 1.25rem;
+  }
+
+  .cin-playlist-content h3 {
+    font-size: 1.2rem;
+  }
+
+  .cin-playlist-link {
+    font-size: 0.9rem;
+    padding: 0.75rem 1.5rem;
   }
 
   .parallax-content h1 {

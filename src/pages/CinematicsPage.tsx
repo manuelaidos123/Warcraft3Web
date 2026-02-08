@@ -1,13 +1,14 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { useParallax } from "../hooks/useParallax";
 
 interface Video {
     id: string;
     title: string;
-    youtubeId: string;
+    searchQuery: string;
     description: string;
     duration: string;
     type: "cinematic" | "gameplay" | "reforged";
+    chapter: string;
 }
 
 interface CharacterCinematics {
@@ -27,35 +28,43 @@ const cinematicsData: CharacterCinematics[] = [
         videos: [
             {
                 id: "a1",
-                title: "Arthas' Betrayal - The Culling of Stratholme",
-                youtubeId: "fNRA42Ixr2Y",
-                description: "Arthas makes the fateful decision to purge the infected city of Stratholme, marking the beginning of his descent into darkness.",
-                duration: "3:42",
+                title: "The Culling of Stratholme",
+                searchQuery: "Warcraft 3 Culling of Stratholme cinematic",
+                description:
+                    "Arthas makes the fateful decision to purge the infected city of Stratholme, against the wishes of Uther and Jaina. This marks the beginning of his descent into darkness.",
+                duration: "~3 min",
                 type: "cinematic",
+                chapter: "Reign of Chaos — Human Campaign",
             },
             {
                 id: "a2",
-                title: "Frostmourne Cinematic",
-                youtubeId: "YTogEMIkWkA",
-                description: "Arthas claims the cursed runeblade Frostmourne in Northrend, sacrificing his soul and Muradin Bronzebeard.",
-                duration: "2:15",
+                title: "Arthas Claims Frostmourne",
+                searchQuery: "Warcraft 3 Arthas Frostmourne cinematic",
+                description:
+                    "In the frozen wastes of Northrend, Arthas claims the cursed runeblade Frostmourne, sacrificing his soul and his companion Muradin Bronzebeard.",
+                duration: "~2 min",
                 type: "cinematic",
+                chapter: "Reign of Chaos — Human Campaign",
             },
             {
                 id: "a3",
-                title: "The Fall of Lordaeron",
-                youtubeId: "5_Z3Rt6851w",
-                description: "Arthas returns to Lordaeron and murders his own father, King Terenas, claiming the throne for the Scourge.",
-                duration: "3:28",
+                title: "The Fall of Lordaeron — Arthas Returns",
+                searchQuery: "Warcraft 3 Arthas returns Lordaeron cinematic king Terenas",
+                description:
+                    "Arthas returns to Lordaeron as a Death Knight and murders his own father, King Terenas Menethil II, claiming the throne for the Scourge.",
+                duration: "~3 min",
                 type: "cinematic",
+                chapter: "Reign of Chaos — Undead Campaign",
             },
             {
                 id: "a4",
                 title: "Arthas Ascends the Frozen Throne",
-                youtubeId: "BCr7y4SLhck",
-                description: "The climactic ending of The Frozen Throne — Arthas shatters the ice prison and dons the Helm of Domination, becoming the Lich King.",
-                duration: "4:12",
+                searchQuery: "Warcraft 3 Frozen Throne ending cinematic Arthas Lich King",
+                description:
+                    "The climactic ending of The Frozen Throne — Arthas shatters the ice prison and dons the Helm of Domination, merging with Ner'zhul to become the new Lich King.",
+                duration: "~4 min",
                 type: "cinematic",
+                chapter: "The Frozen Throne — Undead Campaign",
             },
         ],
     },
@@ -67,19 +76,33 @@ const cinematicsData: CharacterCinematics[] = [
         videos: [
             {
                 id: "t1",
-                title: "Warcraft III: Reign of Chaos - Orc Intro",
-                youtubeId: "ql01wIBMRJM",
-                description: "Thrall receives a mysterious vision from the Prophet, urging him to lead the Horde across the sea to Kalimdor.",
-                duration: "2:30",
+                title: "Warcraft III — Orc Campaign Intro",
+                searchQuery: "Warcraft 3 Reign of Chaos Orc intro cinematic Thrall Prophet",
+                description:
+                    "Thrall receives a mysterious vision from the Prophet, urging him to lead the Horde across the Great Sea to the distant shores of Kalimdor.",
+                duration: "~2 min",
                 type: "cinematic",
+                chapter: "Reign of Chaos — Orc Campaign",
             },
             {
                 id: "t2",
-                title: "Thrall and Grom - The Horde's Journey",
-                youtubeId: "1bKMqS8DIEQ",
-                description: "Thrall leads the Horde to Kalimdor, facing new challenges and forging alliances in an unknown land.",
-                duration: "3:15",
+                title: "Thrall and Cairne — The Barrens",
+                searchQuery: "Warcraft 3 Thrall meets Cairne Bloodhoof Barrens",
+                description:
+                    "Thrall encounters the Tauren chieftain Cairne Bloodhoof in the Barrens of Kalimdor, forging an alliance that will define the future of the Horde.",
+                duration: "~3 min",
                 type: "gameplay",
+                chapter: "Reign of Chaos — Orc Campaign",
+            },
+            {
+                id: "t3",
+                title: "The Battle of Mount Hyjal — Thrall's Stand",
+                searchQuery: "Warcraft 3 Battle of Mount Hyjal cinematic Thrall",
+                description:
+                    "Thrall leads the Horde forces in the desperate defense of the World Tree alongside Jaina Proudmoore and Tyrande Whisperwind against Archimonde and the Burning Legion.",
+                duration: "~4 min",
+                type: "cinematic",
+                chapter: "Reign of Chaos — Night Elf Campaign",
             },
         ],
     },
@@ -91,19 +114,23 @@ const cinematicsData: CharacterCinematics[] = [
         videos: [
             {
                 id: "g1",
-                title: "Grom Hellscream vs Mannoroth",
-                youtubeId: "0-9DKCU_rMY",
-                description: "Grom Hellscream's legendary sacrifice — he slays the pit lord Mannoroth, freeing the orcs from the blood curse forever.",
-                duration: "3:45",
+                title: "Grom Drinks the Blood of Mannoroth",
+                searchQuery: "Warcraft 3 Grom Hellscream drinks blood Mannoroth cinematic",
+                description:
+                    "In a desperate bid for power to defeat Cenarius, Grom and his warriors drink the blood of the pit lord Mannoroth, falling once again under the demonic blood curse.",
+                duration: "~2 min",
                 type: "cinematic",
+                chapter: "Reign of Chaos — Orc Campaign",
             },
             {
                 id: "g2",
-                title: "Grom Drinks the Blood of Mannoroth",
-                youtubeId: "VV20lJnIzHM",
-                description: "In a desperate bid for power, Grom and his warriors drink the blood of Mannoroth, falling once again under demonic corruption.",
-                duration: "2:10",
+                title: "Grom Hellscream vs Mannoroth — The Sacrifice",
+                searchQuery: "Warcraft 3 Grom Hellscream kills Mannoroth cinematic death",
+                description:
+                    "Grom Hellscream's legendary sacrifice — he strikes the killing blow against the pit lord Mannoroth, shattering the blood curse and freeing the orcs forever. \"I am free.\"",
+                duration: "~3 min",
                 type: "cinematic",
+                chapter: "Reign of Chaos — Orc Campaign",
             },
         ],
     },
@@ -115,19 +142,33 @@ const cinematicsData: CharacterCinematics[] = [
         videos: [
             {
                 id: "i1",
-                title: "Illidan vs Arthas - Duel at Icecrown",
-                youtubeId: "LG3RVCEwCPg",
-                description: "The epic final duel between Illidan Stormrage and Arthas Menethil at the foot of the Frozen Throne.",
-                duration: "2:48",
+                title: "Illidan Consumes the Skull of Gul'dan",
+                searchQuery: "Warcraft 3 Illidan Skull of Guldan transformation cinematic",
+                description:
+                    "Illidan consumes the Skull of Gul'dan, gaining immense demonic power. He transforms into a demon hybrid forever, defeating the dreadlord Tichondrius but horrifying Malfurion.",
+                duration: "~2 min",
                 type: "cinematic",
+                chapter: "Reign of Chaos — Night Elf Campaign",
             },
             {
                 id: "i2",
-                title: "Illidan's Transformation",
-                youtubeId: "VQ3lNjH1itk",
-                description: "Illidan consumes the Skull of Gul'dan, gaining immense power but transforming into a demon forever.",
-                duration: "1:55",
+                title: "Illidan vs Arthas — Duel at Icecrown",
+                searchQuery: "Warcraft 3 Frozen Throne Illidan vs Arthas duel cinematic Icecrown",
+                description:
+                    "The epic final duel between Illidan Stormrage and Arthas Menethil at the foot of the Frozen Throne. Only one will walk away. Their blades clash in one of the most iconic moments in Warcraft history.",
+                duration: "~3 min",
                 type: "cinematic",
+                chapter: "The Frozen Throne — Undead Campaign",
+            },
+            {
+                id: "i3",
+                title: "Terror of the Tides — Illidan's Escape",
+                searchQuery: "Warcraft 3 Frozen Throne Terror of the Tides Illidan Maiev cinematic",
+                description:
+                    "Maiev Shadowsong hunts Illidan across the sea after he escapes from his prison. The chase leads to the Broken Isles and the Tomb of Sargeras.",
+                duration: "~3 min",
+                type: "cinematic",
+                chapter: "The Frozen Throne — Sentinel Campaign",
             },
         ],
     },
@@ -139,19 +180,33 @@ const cinematicsData: CharacterCinematics[] = [
         videos: [
             {
                 id: "s1",
-                title: "The Fall of Silvermoon - Sylvanas' Last Stand",
-                youtubeId: "H-fXGmBr74I",
-                description: "Sylvanas Windrunner defends Quel'Thalas against Arthas' Scourge invasion, ultimately falling and being raised as a banshee.",
-                duration: "3:20",
+                title: "The Fall of Silvermoon — Sylvanas' Last Stand",
+                searchQuery: "Warcraft 3 Arthas Sylvanas Silvermoon Quelthalas cinematic",
+                description:
+                    "Sylvanas Windrunner, Ranger-General of Silvermoon, mounts a desperate defense of Quel'Thalas against Arthas and the Scourge. She falls in battle and is raised as a banshee — a fate worse than death.",
+                duration: "~3 min",
                 type: "cinematic",
+                chapter: "Reign of Chaos — Undead Campaign",
             },
             {
                 id: "s2",
-                title: "Sylvanas Breaks Free from the Lich King",
-                youtubeId: "jSHOThFVE2U",
-                description: "As the Lich King's power weakens, Sylvanas regains her free will and begins building the Forsaken faction.",
-                duration: "2:35",
+                title: "Sylvanas Breaks Free — Rise of the Forsaken",
+                searchQuery: "Warcraft 3 Frozen Throne Sylvanas breaks free Lich King Forsaken",
+                description:
+                    "As the Lich King's power weakens, Sylvanas regains her free will. She rallies other freed undead and plots her vengeance against Arthas, founding the Forsaken.",
+                duration: "~2 min",
                 type: "gameplay",
+                chapter: "The Frozen Throne — Undead Campaign",
+            },
+            {
+                id: "s3",
+                title: "Sylvanas' Lament — Song for Quel'Thalas",
+                searchQuery: "Warcraft 3 Sylvanas Lament song Quelthalas banshee",
+                description:
+                    "A haunting moment — Sylvanas sings a mournful elven song for her lost homeland of Quel'Thalas, a rare glimpse of the person she once was beneath the banshee's rage.",
+                duration: "~2 min",
+                type: "gameplay",
+                chapter: "The Frozen Throne — Undead Campaign",
             },
         ],
     },
@@ -163,19 +218,33 @@ const cinematicsData: CharacterCinematics[] = [
         videos: [
             {
                 id: "ty1",
-                title: "Night Elf Campaign Intro - Tyrande's Awakening",
-                youtubeId: "xT7aFkUeMUQ",
-                description: "Tyrande awakens the Druids of the Claw and rallies the Night Elves against the demonic invasion of Ashenvale.",
-                duration: "2:40",
+                title: "Night Elf Campaign Intro — Tyrande's Warning",
+                searchQuery: "Warcraft 3 Reign of Chaos Night Elf campaign intro cinematic Tyrande",
+                description:
+                    "Tyrande senses the demonic corruption spreading through Ashenvale. She awakens the Druids of the Claw and rallies the Sentinels to defend the ancient forests.",
+                duration: "~2 min",
                 type: "cinematic",
+                chapter: "Reign of Chaos — Night Elf Campaign",
             },
             {
                 id: "ty2",
-                title: "Tyrande Frees Illidan",
-                youtubeId: "SQKdRFYhMxA",
-                description: "Against Malfurion's wishes, Tyrande frees Illidan from his ten-thousand-year imprisonment to fight the Burning Legion.",
-                duration: "2:20",
+                title: "Tyrande Frees Illidan from Prison",
+                searchQuery: "Warcraft 3 Tyrande frees Illidan prison cinematic",
+                description:
+                    "Against Malfurion's wishes, Tyrande storms Illidan's underground prison and frees him after ten thousand years. She believes only he has the power to stop the Legion.",
+                duration: "~2 min",
                 type: "gameplay",
+                chapter: "Reign of Chaos — Night Elf Campaign",
+            },
+            {
+                id: "ty3",
+                title: "The Destruction of Archimonde at Hyjal",
+                searchQuery: "Warcraft 3 Archimonde destroyed World Tree Hyjal cinematic ending",
+                description:
+                    "Tyrande, Malfurion, Thrall, and Jaina combine their forces for a final stand. Malfurion's trap is sprung, and Archimonde is annihilated by the spirits of the World Tree.",
+                duration: "~4 min",
+                type: "cinematic",
+                chapter: "Reign of Chaos — Night Elf Campaign",
             },
         ],
     },
@@ -187,19 +256,33 @@ const cinematicsData: CharacterCinematics[] = [
         videos: [
             {
                 id: "m1",
-                title: "Warcraft III: Reign of Chaos - Opening Cinematic",
-                youtubeId: "c2vm-QjK2xQ",
-                description: "The iconic opening cinematic of Warcraft III, featuring Medivh as the Prophet warning of the coming apocalypse.",
-                duration: "4:32",
+                title: "Warcraft III: Reign of Chaos — Opening Cinematic",
+                searchQuery: "Warcraft 3 Reign of Chaos opening cinematic intro",
+                description:
+                    "The iconic opening cinematic of Warcraft III. A lone orc and human clash on a burning battlefield until the Prophet (Medivh) appears as a raven, foretelling doom for Azeroth.",
+                duration: "~4 min",
                 type: "cinematic",
+                chapter: "Reign of Chaos — Prologue",
             },
             {
                 id: "m2",
-                title: "The Prophet's Warning to King Terenas",
-                youtubeId: "gCPLiaThIpI",
-                description: "Medivh, disguised as The Prophet, warns King Terenas Menethil of the coming plague, but is dismissed by the court.",
-                duration: "2:50",
+                title: "The Prophet Warns King Terenas",
+                searchQuery: "Warcraft 3 Prophet Medivh warns King Terenas cinematic",
+                description:
+                    "Medivh, disguised as the Prophet, appears before King Terenas and the court of Lordaeron to warn of the coming plague. He urges them to flee west, but is dismissed as a madman.",
+                duration: "~3 min",
                 type: "cinematic",
+                chapter: "Reign of Chaos — Human Campaign",
+            },
+            {
+                id: "m3",
+                title: "Medivh Reveals His Identity — The Summit",
+                searchQuery: "Warcraft 3 Medivh reveals identity Prophet summit Thrall Jaina",
+                description:
+                    "At the summit before the Battle of Mount Hyjal, Medivh finally reveals his true identity and convinces the races of Azeroth to unite against the Burning Legion.",
+                duration: "~3 min",
+                type: "cinematic",
+                chapter: "Reign of Chaos — Night Elf Campaign",
             },
         ],
     },
@@ -211,19 +294,23 @@ const cinematicsData: CharacterCinematics[] = [
         videos: [
             {
                 id: "u1",
-                title: "Uther and Arthas - The Culling of Stratholme",
-                youtubeId: "fNRA42Ixr2Y",
-                description: "Uther refuses Arthas' order to purge Stratholme, leading to their bitter separation and the disbanding of the Silver Hand.",
-                duration: "3:42",
+                title: "Uther Defies Arthas at Stratholme",
+                searchQuery: "Warcraft 3 Uther Arthas Stratholme argument cinematic Silver Hand",
+                description:
+                    "Uther refuses Arthas' order to purge the citizens of Stratholme. Their argument leads to the disbanding of the Knights of the Silver Hand — a pivotal turning point.",
+                duration: "~3 min",
                 type: "cinematic",
+                chapter: "Reign of Chaos — Human Campaign",
             },
             {
                 id: "u2",
-                title: "Death of Uther the Lightbringer",
-                youtubeId: "hnd9RzaaXxs",
-                description: "Arthas, now a Death Knight, confronts and kills his former mentor Uther to claim the urn of King Terenas.",
-                duration: "2:00",
+                title: "The Death of Uther the Lightbringer",
+                searchQuery: "Warcraft 3 Arthas kills Uther death cinematic urn Terenas",
+                description:
+                    "Arthas, now a Death Knight, confronts and slays his former mentor Uther to claim the urn containing King Terenas' ashes — which he needs to transport Kel'Thuzad's remains.",
+                duration: "~2 min",
                 type: "gameplay",
+                chapter: "Reign of Chaos — Undead Campaign",
             },
         ],
     },
@@ -235,19 +322,33 @@ const cinematicsData: CharacterCinematics[] = [
         videos: [
             {
                 id: "j1",
-                title: "Jaina and Arthas - Parting Ways",
-                youtubeId: "kS73A6ksBqQ",
-                description: "Jaina follows the Prophet's advice and sails west to Kalimdor, parting ways with Arthas before his descent into madness.",
-                duration: "2:15",
+                title: "Jaina and Arthas — Parting Ways Before Northrend",
+                searchQuery: "Warcraft 3 Jaina Arthas parting ways Northrend cinematic",
+                description:
+                    "Jaina follows the Prophet's advice and sails west to Kalimdor, parting ways with Arthas before his fateful journey to Northrend. Neither knows this is the last time they'll meet as allies.",
+                duration: "~2 min",
                 type: "cinematic",
+                chapter: "Reign of Chaos — Human Campaign",
             },
             {
                 id: "j2",
-                title: "Battle of Mount Hyjal - The Final Stand",
-                youtubeId: "XNpanGSsJOk",
-                description: "Jaina leads the Alliance forces alongside Thrall and Tyrande in the desperate defense of the World Tree against Archimonde.",
-                duration: "4:55",
+                title: "Jaina Meets Thrall — An Unlikely Alliance",
+                searchQuery: "Warcraft 3 Jaina meets Thrall alliance Kalimdor cinematic Medivh",
+                description:
+                    "Through the Prophet's guidance, Jaina and Thrall form an unprecedented alliance between humans and orcs to face the Burning Legion's invasion of Kalimdor.",
+                duration: "~3 min",
                 type: "cinematic",
+                chapter: "Reign of Chaos — Orc Campaign",
+            },
+            {
+                id: "j3",
+                title: "Battle of Mount Hyjal — Jaina's Defense",
+                searchQuery: "Warcraft 3 Battle Mount Hyjal Jaina base defense cinematic",
+                description:
+                    "Jaina commands the Alliance base at the Battle of Mount Hyjal, holding the line against waves of undead and demons to buy time for Malfurion's plan.",
+                duration: "~4 min",
+                type: "gameplay",
+                chapter: "Reign of Chaos — Night Elf Campaign",
             },
         ],
     },
@@ -259,19 +360,23 @@ const cinematicsData: CharacterCinematics[] = [
         videos: [
             {
                 id: "mf1",
-                title: "Archimonde's Destruction - Malfurion's Trap",
-                youtubeId: "GZcyFpeJctQ",
-                description: "Malfurion springs his trap at the World Tree, channeling the power of nature to destroy Archimonde and save Azeroth.",
-                duration: "3:30",
-                type: "cinematic",
+                title: "Malfurion's Awakening from the Emerald Dream",
+                searchQuery: "Warcraft 3 Malfurion awakening Emerald Dream Tyrande cinematic",
+                description:
+                    "After ten thousand years of slumber in the Emerald Dream, Malfurion Stormrage is awakened by Tyrande to face the return of the Burning Legion.",
+                duration: "~2 min",
+                type: "gameplay",
+                chapter: "Reign of Chaos — Night Elf Campaign",
             },
             {
                 id: "mf2",
-                title: "Malfurion's Awakening",
-                youtubeId: "86RsVLwG3cQ",
-                description: "After ten thousand years of slumber in the Emerald Dream, Malfurion is awakened by Tyrande to face the Legion threat.",
-                duration: "2:10",
-                type: "gameplay",
+                title: "The Destruction of Archimonde — Malfurion's Trap",
+                searchQuery: "Warcraft 3 Archimonde destruction World Tree wisps Malfurion cinematic",
+                description:
+                    "Malfurion springs his ultimate trap — thousands of wisps converge on Archimonde at the World Tree, detonating in a massive explosion that destroys the demon lord and saves Azeroth.",
+                duration: "~3 min",
+                type: "cinematic",
+                chapter: "Reign of Chaos — Night Elf Campaign",
             },
         ],
     },
@@ -283,19 +388,33 @@ const cinematicsData: CharacterCinematics[] = [
         videos: [
             {
                 id: "k1",
-                title: "Kel'Thuzad's Resurrection",
-                youtubeId: "DjB2IHQN0rc",
-                description: "Arthas corrupts the Sunwell to resurrect Kel'Thuzad as a powerful lich, devastating the High Elves of Quel'Thalas.",
-                duration: "2:45",
-                type: "cinematic",
+                title: "Arthas Meets Kel'Thuzad — The Plague Spreads",
+                searchQuery: "Warcraft 3 Arthas Kelthuzad plague Lordaeron cinematic",
+                description:
+                    "Arthas confronts the necromancer Kel'Thuzad, the mastermind behind the plague of undeath ravaging Lordaeron. Their meeting sets Arthas on his path of vengeance.",
+                duration: "~2 min",
+                type: "gameplay",
+                chapter: "Reign of Chaos — Human Campaign",
             },
             {
                 id: "k2",
-                title: "Kel'Thuzad Summons Archimonde",
-                youtubeId: "g8JEoaox9JE",
-                description: "Using the Book of Medivh, Kel'Thuzad opens a portal for Archimonde to enter Azeroth, unleashing the Burning Legion.",
-                duration: "3:10",
+                title: "Kel'Thuzad's Resurrection at the Sunwell",
+                searchQuery: "Warcraft 3 Kelthuzad resurrection Sunwell lich cinematic",
+                description:
+                    "Arthas corrupts the sacred Sunwell of the High Elves to resurrect Kel'Thuzad as a powerful lich, devastating Quel'Thalas in the process and dooming the elven kingdom.",
+                duration: "~3 min",
                 type: "cinematic",
+                chapter: "Reign of Chaos — Undead Campaign",
+            },
+            {
+                id: "k3",
+                title: "Kel'Thuzad Summons Archimonde",
+                searchQuery: "Warcraft 3 Kelthuzad summons Archimonde portal cinematic Dalaran",
+                description:
+                    "Using the Book of Medivh in Dalaran, Kel'Thuzad opens a massive portal through which Archimonde enters Azeroth, unleashing the full might of the Burning Legion upon the world.",
+                duration: "~3 min",
+                type: "cinematic",
+                chapter: "Reign of Chaos — Undead Campaign",
             },
         ],
     },
@@ -307,11 +426,23 @@ const cinematicsData: CharacterCinematics[] = [
         videos: [
             {
                 id: "c1",
-                title: "Thrall Meets Cairne Bloodhoof",
-                youtubeId: "rFr4lPIzxjY",
-                description: "Thrall encounters Cairne and the Tauren in the Barrens, forming an alliance that would shape the future of the Horde.",
-                duration: "2:20",
+                title: "Thrall Meets Cairne — Alliance of the Horde and Tauren",
+                searchQuery: "Warcraft 3 Thrall meets Cairne Bloodhoof Tauren Barrens cinematic",
+                description:
+                    "Thrall encounters the wise Cairne Bloodhoof and his Tauren people in the Barrens of Kalimdor. Together, they fight off centaur attackers and forge an alliance that will shape the future of the Horde.",
+                duration: "~2 min",
                 type: "gameplay",
+                chapter: "Reign of Chaos — Orc Campaign",
+            },
+            {
+                id: "c2",
+                title: "The Tauren Find Mulgore",
+                searchQuery: "Warcraft 3 Tauren Cairne Mulgore Thunder Bluff homeland",
+                description:
+                    "With Thrall's help, the Tauren find a safe homeland in the lush plains of Mulgore, where they establish Thunder Bluff and finally live in peace after years of being hunted by centaur.",
+                duration: "~2 min",
+                type: "gameplay",
+                chapter: "Reign of Chaos — Orc Campaign",
             },
         ],
     },
@@ -331,59 +462,57 @@ const factionNames: Record<string, string> = {
     nightelf: "Night Elves",
 };
 
-const typeLabels: Record<string, { label: string; color: string }> = {
-    cinematic: { label: "Cinematic", color: "#e67e22" },
-    gameplay: { label: "In-Game", color: "#3498db" },
-    reforged: { label: "Reforged", color: "#2ecc71" },
+const typeLabels: Record<string, { label: string; icon: string; color: string }> = {
+    cinematic: { label: "Cinematic", icon: "🎬", color: "#e67e22" },
+    gameplay: { label: "In-Game", icon: "🎮", color: "#3498db" },
+    reforged: { label: "Reforged", icon: "✨", color: "#2ecc71" },
 };
+
+const chapterColors: Record<string, string> = {
+    "Reign of Chaos — Prologue": "#f39c12",
+    "Reign of Chaos — Human Campaign": "#2f89fc",
+    "Reign of Chaos — Orc Campaign": "#c41e3a",
+    "Reign of Chaos — Undead Campaign": "#9b59b6",
+    "Reign of Chaos — Night Elf Campaign": "#1abc9c",
+    "The Frozen Throne — Sentinel Campaign": "#1abc9c",
+    "The Frozen Throne — Undead Campaign": "#9b59b6",
+};
+
+function getYouTubeSearchUrl(query: string): string {
+    return `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`;
+}
 
 export function CinematicsPage() {
     const { ref: parallaxRef, offset } = useParallax(0.3);
     const [selectedFaction, setSelectedFaction] = useState<string>("");
+    const [selectedType, setSelectedType] = useState<string>("");
     const [searchQuery, setSearchQuery] = useState("");
-    const [activeVideo, setActiveVideo] = useState<{ character: string; video: Video } | null>(null);
     const [expandedCharacter, setExpandedCharacter] = useState<string | null>(null);
-    const modalRef = useRef<HTMLDivElement>(null);
 
     const totalVideos = cinematicsData.reduce((sum, c) => sum + c.videos.length, 0);
 
-    const filteredData = cinematicsData.filter((c) => {
-        const matchesFaction = !selectedFaction || c.faction === selectedFaction;
-        const matchesSearch =
-            !searchQuery ||
-            c.character.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            c.videos.some(
-                (v) =>
+    const filteredData = cinematicsData
+        .map((c) => {
+            const matchesFaction = !selectedFaction || c.faction === selectedFaction;
+            if (!matchesFaction) return null;
+
+            const filteredVideos = c.videos.filter((v) => {
+                const matchesType = !selectedType || v.type === selectedType;
+                const matchesSearch =
+                    !searchQuery ||
+                    c.character.toLowerCase().includes(searchQuery.toLowerCase()) ||
                     v.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                    v.description.toLowerCase().includes(searchQuery.toLowerCase())
-            );
-        return matchesFaction && matchesSearch;
-    });
+                    v.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    v.chapter.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchesType && matchesSearch;
+            });
 
-    useEffect(() => {
-        if (activeVideo) {
-            document.body.style.overflow = "hidden";
-        } else {
-            document.body.style.overflow = "";
-        }
-        return () => { document.body.style.overflow = ""; };
-    }, [activeVideo]);
+            if (filteredVideos.length === 0) return null;
+            return { ...c, videos: filteredVideos };
+        })
+        .filter(Boolean) as CharacterCinematics[];
 
-    useEffect(() => {
-        const handleKey = (e: KeyboardEvent) => {
-            if (e.key === "Escape" && activeVideo) {
-                setActiveVideo(null);
-            }
-        };
-        window.addEventListener("keydown", handleKey);
-        return () => window.removeEventListener("keydown", handleKey);
-    }, [activeVideo]);
-
-    const handleBackdropClick = (e: React.MouseEvent) => {
-        if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
-            setActiveVideo(null);
-        }
-    };
+    const filteredVideoCount = filteredData.reduce((s, c) => s + c.videos.length, 0);
 
     return (
         <>
@@ -395,14 +524,15 @@ export function CinematicsPage() {
                     style={{ transform: `translateY(${offset}px)` }}
                 />
                 <div className="parallax-decorations">
-                    <span className="floating-decoration" style={{ top: "20%", left: "8%", animationDelay: "0s" }}>🎬</span>
-                    <span className="floating-decoration" style={{ top: "60%", left: "15%", animationDelay: "1.5s" }}>🎥</span>
-                    <span className="floating-decoration" style={{ top: "30%", right: "10%", animationDelay: "3s" }}>🎞️</span>
-                    <span className="floating-decoration" style={{ top: "70%", right: "18%", animationDelay: "4.5s" }}>📽️</span>
+                    <span className="floating-decoration" style={{ top: "15%", left: "5%", animationDelay: "0s", fontSize: "2rem" }}>🎬</span>
+                    <span className="floating-decoration" style={{ top: "55%", left: "12%", animationDelay: "1.5s", fontSize: "1.5rem" }}>🎥</span>
+                    <span className="floating-decoration" style={{ top: "25%", right: "8%", animationDelay: "3s", fontSize: "2rem" }}>🎞️</span>
+                    <span className="floating-decoration" style={{ top: "65%", right: "15%", animationDelay: "4.5s", fontSize: "1.5rem" }}>⚔️</span>
+                    <span className="floating-decoration" style={{ top: "40%", left: "80%", animationDelay: "2s", fontSize: "1.8rem" }}>🛡️</span>
                 </div>
                 <div className="parallax-content">
                     <h1>Cinematics & Videos</h1>
-                    <p>Experience the epic moments of Warcraft III through legendary cinematics</p>
+                    <p>Relive the epic moments of Warcraft III through legendary cinematics and in-game scenes</p>
                     <div className="hero-stats">
                         <div className="hero-stat">
                             <span className="hero-stat-number">{cinematicsData.length}</span>
@@ -421,10 +551,19 @@ export function CinematicsPage() {
             </section>
 
             <main className="container cinematics-main">
+                {/* Info Banner */}
+                <div className="cin-info-banner">
+                    <span className="cin-info-icon">💡</span>
+                    <p>
+                        Each video card links to a <strong>YouTube search</strong> for that specific cinematic scene.
+                        Click any card to find the best available version of that moment on YouTube.
+                    </p>
+                </div>
+
                 {/* Filters */}
                 <div className="cinematics-filters">
                     <div className="filter-group">
-                        <label htmlFor="cin-faction-filter">Filter by Faction</label>
+                        <label htmlFor="cin-faction-filter">Faction</label>
                         <select
                             id="cin-faction-filter"
                             className="filter-select"
@@ -439,19 +578,31 @@ export function CinematicsPage() {
                         </select>
                     </div>
                     <div className="filter-group">
-                        <label htmlFor="cin-search">Search Videos</label>
+                        <label htmlFor="cin-type-filter">Type</label>
+                        <select
+                            id="cin-type-filter"
+                            className="filter-select"
+                            value={selectedType}
+                            onChange={(e) => setSelectedType(e.target.value)}
+                        >
+                            <option value="">All Types</option>
+                            <option value="cinematic">🎬 Cinematics</option>
+                            <option value="gameplay">🎮 In-Game Scenes</option>
+                        </select>
+                    </div>
+                    <div className="filter-group">
+                        <label htmlFor="cin-search">Search</label>
                         <input
                             id="cin-search"
                             type="text"
                             className="filter-input"
-                            placeholder="Search characters or videos..."
+                            placeholder="Search characters, videos, campaigns..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                         />
                     </div>
                     <div className="filter-results">
-                        Showing <strong>{filteredData.length}</strong> of {cinematicsData.length} characters
-                        ({filteredData.reduce((s, c) => s + c.videos.length, 0)} videos)
+                        Showing <strong>{filteredData.length}</strong> character{filteredData.length !== 1 ? "s" : ""} · <strong>{filteredVideoCount}</strong> video{filteredVideoCount !== 1 ? "s" : ""}
                     </div>
                 </div>
 
@@ -467,6 +618,7 @@ export function CinematicsPage() {
                         {filteredData.map((charData) => {
                             const isExpanded = expandedCharacter === charData.character;
                             const visibleVideos = isExpanded ? charData.videos : charData.videos.slice(0, 2);
+                            const hasMore = charData.videos.length > 2;
 
                             return (
                                 <div
@@ -489,7 +641,7 @@ export function CinematicsPage() {
                                                 }}
                                             />
                                             <div className="cin-portrait-fallback" style={{ display: "none" }}>
-                                                {charData.character.split(" ").map(n => n[0]).join("")}
+                                                {charData.character.split(" ").map((n) => n[0]).join("")}
                                             </div>
                                         </div>
                                         <div className="cin-character-info">
@@ -504,56 +656,70 @@ export function CinematicsPage() {
                                         </div>
                                         <div className="cin-video-count">
                                             <span className="cin-count-number">{charData.videos.length}</span>
-                                            <span className="cin-count-label">video{charData.videos.length > 1 ? "s" : ""}</span>
+                                            <span className="cin-count-label">
+                                                video{charData.videos.length > 1 ? "s" : ""}
+                                            </span>
                                         </div>
                                     </div>
 
                                     {/* Videos Grid */}
                                     <div className="cin-videos-grid">
                                         {visibleVideos.map((video) => (
-                                            <div
+                                            <a
                                                 key={video.id}
+                                                href={getYouTubeSearchUrl(video.searchQuery)}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
                                                 className="cin-video-card"
-                                                onClick={() => setActiveVideo({ character: charData.character, video })}
-                                                role="button"
-                                                tabIndex={0}
-                                                onKeyDown={(e) => {
-                                                    if (e.key === "Enter" || e.key === " ") {
-                                                        e.preventDefault();
-                                                        setActiveVideo({ character: charData.character, video });
-                                                    }
-                                                }}
+                                                title={`Search YouTube for: ${video.title}`}
                                             >
                                                 <div className="cin-thumbnail">
-                                                    <img
-                                                        src={`https://img.youtube.com/vi/${video.youtubeId}/mqdefault.jpg`}
-                                                        alt={video.title}
-                                                        loading="lazy"
-                                                        onError={(e) => {
-                                                            const target = e.target as HTMLImageElement;
-                                                            target.src = `https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg`;
+                                                    <div
+                                                        className="cin-thumbnail-art"
+                                                        style={{
+                                                            backgroundImage: `url(${charData.image})`,
                                                         }}
-                                                    />
-                                                    <div className="cin-play-overlay">
-                                                        <div className="cin-play-button">▶</div>
+                                                    >
+                                                        <div className="cin-thumbnail-overlay">
+                                                            <div className="cin-play-button">
+                                                                <svg width="40" height="40" viewBox="0 0 24 24" fill="white">
+                                                                    <path d="M8 5v14l11-7z" />
+                                                                </svg>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                     <span className="cin-duration">{video.duration}</span>
                                                     <span
                                                         className="cin-type-badge"
                                                         style={{ backgroundColor: typeLabels[video.type].color }}
                                                     >
-                                                        {typeLabels[video.type].label}
+                                                        {typeLabels[video.type].icon} {typeLabels[video.type].label}
                                                     </span>
                                                 </div>
                                                 <div className="cin-video-info">
                                                     <h4>{video.title}</h4>
+                                                    <span
+                                                        className="cin-chapter-tag"
+                                                        style={{
+                                                            borderColor: chapterColors[video.chapter] || "#666",
+                                                            color: chapterColors[video.chapter] || "#666",
+                                                        }}
+                                                    >
+                                                        {video.chapter}
+                                                    </span>
                                                     <p>{video.description}</p>
+                                                    <span className="cin-yt-link">
+                                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style={{ verticalAlign: "middle", marginRight: "4px" }}>
+                                                            <path d="M21.8 8s-.2-1.4-.8-2c-.7-.8-1.5-.8-1.9-.9C16.4 5 12 5 12 5s-4.4 0-7.1.2c-.4 0-1.2.1-1.9.9-.6.6-.8 2-.8 2S2 9.6 2 11.2v1.5c0 1.6.2 3.2.2 3.2s.2 1.4.8 2c.7.8 1.7.8 2.1.9 1.5.1 6.9.2 6.9.2s4.4 0 7.1-.2c.4 0 1.2-.1 1.9-.9.6-.6.8-2 .8-2s.2-1.6.2-3.2v-1.5c0-1.6-.2-3.2-.2-3.2zM9.9 15.1V8.9l5.1 3.1-5.1 3.1z" />
+                                                        </svg>
+                                                        Search on YouTube →
+                                                    </span>
                                                 </div>
-                                            </div>
+                                            </a>
                                         ))}
                                     </div>
 
-                                    {charData.videos.length > 2 && (
+                                    {hasMore && (
                                         <button
                                             className="cin-show-more"
                                             onClick={() =>
@@ -570,52 +736,26 @@ export function CinematicsPage() {
                         })}
                     </div>
                 )}
-            </main>
 
-            {/* Video Modal */}
-            {activeVideo && (
-                <div className="cin-modal-backdrop" onClick={handleBackdropClick}>
-                    <div className="cin-modal" ref={modalRef}>
-                        <button
-                            className="cin-modal-close"
-                            onClick={() => setActiveVideo(null)}
-                            aria-label="Close video"
+                {/* All Cinematics Playlist Link */}
+                <div className="cin-playlist-banner">
+                    <div className="cin-playlist-content">
+                        <h3>📺 Want to watch all cinematics in order?</h3>
+                        <p>Search for the complete Warcraft III cinematic collection on YouTube</p>
+                        <a
+                            href={getYouTubeSearchUrl("Warcraft 3 all cinematics in order Reign of Chaos Frozen Throne")}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="cin-playlist-link"
                         >
-                            ✕
-                        </button>
-                        <div className="cin-modal-video">
-                            <iframe
-                                src={`https://www.youtube.com/embed/${activeVideo.video.youtubeId}?autoplay=1&rel=0`}
-                                title={activeVideo.video.title}
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowFullScreen
-                            />
-                        </div>
-                        <div className="cin-modal-info">
-                            <h3>{activeVideo.video.title}</h3>
-                            <div className="cin-modal-meta">
-                                <span className="cin-modal-character">{activeVideo.character}</span>
-                                <span
-                                    className="cin-type-badge"
-                                    style={{ backgroundColor: typeLabels[activeVideo.video.type].color }}
-                                >
-                                    {typeLabels[activeVideo.video.type].label}
-                                </span>
-                                <span className="cin-modal-duration">⏱ {activeVideo.video.duration}</span>
-                            </div>
-                            <p>{activeVideo.video.description}</p>
-                            <a
-                                href={`https://www.youtube.com/watch?v=${activeVideo.video.youtubeId}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="cin-youtube-link"
-                            >
-                                ▶ Watch on YouTube
-                            </a>
-                        </div>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style={{ verticalAlign: "middle", marginRight: "6px" }}>
+                                <path d="M21.8 8s-.2-1.4-.8-2c-.7-.8-1.5-.8-1.9-.9C16.4 5 12 5 12 5s-4.4 0-7.1.2c-.4 0-1.2.1-1.9.9-.6.6-.8 2-.8 2S2 9.6 2 11.2v1.5c0 1.6.2 3.2.2 3.2s.2 1.4.8 2c.7.8 1.7.8 2.1.9 1.5.1 6.9.2 6.9.2s4.4 0 7.1-.2c.4 0 1.2-.1 1.9-.9.6-.6.8-2 .8-2s.2-1.6.2-3.2v-1.5c0-1.6-.2-3.2-.2-3.2zM9.9 15.1V8.9l5.1 3.1-5.1 3.1z" />
+                            </svg>
+                            Search All Cinematics on YouTube →
+                        </a>
                     </div>
                 </div>
-            )}
+            </main>
         </>
     );
 }
