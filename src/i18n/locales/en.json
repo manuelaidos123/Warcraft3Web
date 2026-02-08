@@ -1,0 +1,205 @@
+{
+    "nav": {
+        "home": "Home",
+        "story": "Story",
+        "timeline": "Timeline",
+        "guide": "Campaign Guide",
+        "factions": "Factions",
+        "characters": "Characters",
+        "pedia": "WarcraftPedia",
+        "cinematics": "Cinematics",
+        "test": "Knowledge Test"
+    },
+    "home": {
+        "hero": {
+            "title": "Warcraft III",
+            "subtitle": "The Epic Saga",
+            "description": "Explore the legendary lore, characters, and campaigns of Warcraft III: Reign of Chaos and The Frozen Throne.",
+            "cta": {
+                "primary": "Explore the Story",
+                "secondary": "Take the Quiz"
+            }
+        },
+        "features": {
+            "title": "Discover the Legend",
+            "subtitle": "Immerse yourself in the rich world of Azeroth",
+            "characters": {
+                "title": "Legendary Characters",
+                "description": "Meet the heroes and villains who shaped the fate of Azeroth"
+            },
+            "factions": {
+                "title": "Four Mighty Factions",
+                "description": "Alliance, Horde, Undead Scourge, and Night Elves"
+            },
+            "timeline": {
+                "title": "Epic Timeline",
+                "description": "10,000+ years of history across four major eras"
+            },
+            "quiz": {
+                "title": "Test Your Knowledge",
+                "description": "15 questions to prove your mastery of Warcraft lore"
+            }
+        },
+        "cta": {
+            "title": "Begin Your Journey",
+            "description": "Dive into the complete Warcraft III experience",
+            "button": "Start Exploring"
+        }
+    },
+    "story": {
+        "title": "The Story of Warcraft III",
+        "subtitle": "A Tale of Heroes, Villains, and the Fate of Azeroth",
+        "campaigns": {
+            "roc": {
+                "title": "Reign of Chaos",
+                "description": "The Third War begins as the Burning Legion threatens to destroy all life on Azeroth."
+            },
+            "tft": {
+                "title": "The Frozen Throne",
+                "description": "The aftermath of the Third War and the rise of new threats from Northrend."
+            }
+        }
+    },
+    "timeline": {
+        "title": "Timeline of Azeroth",
+        "subtitle": "10,000+ Years of History",
+        "eras": {
+            "all": "All Eras",
+            "ancient": "Ancient Times",
+            "warcraft1": "First War",
+            "warcraft2": "Second War",
+            "warcraft3": "Third War"
+        },
+        "events": "events"
+    },
+    "guide": {
+        "title": "Campaign Guide",
+        "subtitle": "Strategy Tips for Each Faction",
+        "tabs": {
+            "alliance": "Alliance",
+            "horde": "Horde",
+            "undead": "Undead",
+            "nightelf": "Night Elves"
+        },
+        "tips": {
+            "title": "Key Strategies",
+            "strengths": "Strengths",
+            "weaknesses": "Weaknesses",
+            "heroes": "Recommended Heroes"
+        },
+        "comparison": {
+            "title": "Faction Comparison",
+            "faction": "Faction",
+            "playstyle": "Playstyle",
+            "difficulty": "Difficulty",
+            "strength": "Key Strength"
+        }
+    },
+    "factions": {
+        "title": "The Four Factions",
+        "subtitle": "Choose Your Allegiance",
+        "learnMore": "Learn More",
+        "leaders": "Leaders",
+        "units": "Units",
+        "strengths": "Strengths",
+        "lore": "Lore"
+    },
+    "characters": {
+        "title": "Legendary Characters",
+        "subtitle": "Heroes and Villains of Azeroth",
+        "search": "Search characters...",
+        "filter": {
+            "all": "All Factions",
+            "alliance": "Alliance",
+            "horde": "Horde",
+            "undead": "Undead Scourge",
+            "nightelf": "Night Elves"
+        },
+        "role": {
+            "all": "All Roles",
+            "hero": "Hero",
+            "villain": "Villain",
+            "support": "Support"
+        },
+        "abilities": "Abilities",
+        "noResults": "No characters found matching your criteria."
+    },
+    "pedia": {
+        "title": "WarcraftPedia",
+        "subtitle": "The Complete Encyclopedia",
+        "search": "Search the encyclopedia...",
+        "categories": {
+            "all": "All Categories",
+            "artifacts": "Artifacts",
+            "locations": "Locations",
+            "events": "Events",
+            "organizations": "Organizations"
+        },
+        "noResults": "No entries found matching your search."
+    },
+    "cinematics": {
+        "title": "Cinematics Gallery",
+        "subtitle": "Relive the Iconic Moments",
+        "watchOnYoutube": "Watch on YouTube",
+        "filter": {
+            "all": "All Cinematics",
+            "roc": "Reign of Chaos",
+            "tft": "The Frozen Throne"
+        }
+    },
+    "test": {
+        "title": "Knowledge Test",
+        "subtitle": "Test Your Warcraft III Lore Knowledge",
+        "start": "Start Quiz",
+        "question": "Question",
+        "of": "of",
+        "next": "Next Question",
+        "previous": "Previous",
+        "submit": "Submit Answer",
+        "results": {
+            "title": "Quiz Results",
+            "score": "Your Score",
+            "correct": "Correct",
+            "incorrect": "Incorrect",
+            "excellent": "Excellent! You're a true Warcraft lore master!",
+            "good": "Great job! You know your Warcraft history well.",
+            "average": "Not bad! There's more lore to discover.",
+            "poor": "Keep exploring! The world of Azeroth awaits.",
+            "review": "Review Answers",
+            "retake": "Retake Quiz",
+            "backHome": "Back to Home"
+        },
+        "correct": "Correct!",
+        "incorrect": "Incorrect!",
+        "explanation": "Explanation"
+    },
+    "loreSnippet": {
+        "title": "Lore Snippet",
+        "next": "Next",
+        "previous": "Previous"
+    },
+    "footer": {
+        "description": "A fan-made tribute to Warcraft III: Reign of Chaos and The Frozen Throne. Explore the epic saga of heroes, villains, and the fate of Azeroth.",
+        "quickLinks": "Quick Links",
+        "resources": "Resources",
+        "credits": "Credits",
+        "copyright": "This is a fan-made project for educational purposes. Warcraft III and all related content are property of Blizzard Entertainment.",
+        "madeWith": "Made with"
+    },
+    "common": {
+        "loading": "Loading...",
+        "error": "An error occurred",
+        "close": "Close",
+        "readMore": "Read More",
+        "back": "Back",
+        "search": "Search",
+        "filter": "Filter",
+        "clear": "Clear",
+        "noResults": "No results found"
+    },
+    "language": {
+        "select": "Language",
+        "en": "English",
+        "pt": "Português"
+    }
+}

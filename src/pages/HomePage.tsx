@@ -1,4 +1,5 @@
 import { useState, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import { characters, factionColors } from "../data/characters";
 import { factions } from "../data/factions";
 import { useParallaxLayers } from "../hooks/useParallax";
@@ -16,6 +17,7 @@ function CharImage({ src, alt }: { src: string; alt: string }) {
 }
 
 export function HomePage({ onNavigate }: HomePageProps) {
+  const { t } = useTranslation();
   const featuredChars = characters.filter(c => [1, 2, 4, 11].includes(c.id));
   const { bgRef, contentRef, bgOffset, contentOffset, opacity } = useParallaxLayers();
 
@@ -30,18 +32,17 @@ export function HomePage({ onNavigate }: HomePageProps) {
           ))}
         </div>
         <div className="container hero-content parallax-content" ref={contentRef} style={{ transform: `translateY(${contentOffset}px)`, opacity }}>
-          <h1 className="hero-title">Warcraft III</h1>
-          <p className="hero-subtitle">Reign of Chaos &amp; The Frozen Throne</p>
+          <h1 className="hero-title">{t("home.hero.title")}</h1>
+          <p className="hero-subtitle">{t("home.hero.subtitle")}</p>
           <p className="hero-desc">
-            Explore the epic saga of heroes, villains, and the battle for Azeroth. 
-            Dive into the lore, factions, and legendary characters that defined a generation of gaming.
+            {t("home.hero.description")}
           </p>
           <div className="hero-buttons">
             <button className="btn-primary-wc" onClick={() => onNavigate("story")}>
-              <i className="fas fa-book-open" aria-hidden="true"></i> Explore the Story
+              <i className="fas fa-book-open" aria-hidden="true"></i> {t("home.hero.cta.primary")}
             </button>
             <button className="btn-secondary-wc" onClick={() => onNavigate("characters")}>
-              <i className="fas fa-users" aria-hidden="true"></i> Meet the Characters
+              <i className="fas fa-users" aria-hidden="true"></i> {t("home.hero.cta.secondary")}
             </button>
           </div>
         </div>
@@ -53,7 +54,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
       {/* Featured Characters */}
       <section className="home-section">
         <div className="container">
-          <h2 className="section-title">Legendary Heroes &amp; Villains</h2>
+          <h2 className="section-title">{t("home.features.characters.title")}</h2>
           <div className="featured-chars-grid">
             {featuredChars.map(c => (
               <div
@@ -80,7 +81,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
       {/* Factions Overview */}
       <section className="home-section home-section-dark">
         <div className="container">
-          <h2 className="section-title section-title-light">The Four Factions</h2>
+          <h2 className="section-title section-title-light">{t("home.features.factions.title")}</h2>
           <div className="factions-overview-grid">
             {factions.map(f => (
               <div
@@ -105,17 +106,16 @@ export function HomePage({ onNavigate }: HomePageProps) {
       {/* Story Teaser */}
       <section className="home-section">
         <div className="container">
-          <h2 className="section-title">The Epic Campaigns</h2>
+          <h2 className="section-title">{t("story.title")}</h2>
           <div className="campaigns-grid">
             <div className="campaign-card">
               <div className="campaign-card-header" style={{ background: "linear-gradient(135deg, #b8860b, #ffd700)" }}>
                 <i className="fas fa-crown campaign-icon" aria-hidden="true"></i>
-                <h3>Reign of Chaos</h3>
+                <h3>{t("story.campaigns.roc.title")}</h3>
               </div>
               <div className="campaign-card-body">
                 <p>
-                  Experience the fall of Lordaeron, the liberation of the Horde, the awakening of the Night Elves, 
-                  and the climactic Battle of Mount Hyjal across four interconnected campaigns.
+                  {t("story.campaigns.roc.description")}
                 </p>
                 <ul className="campaign-highlights">
                   <li><i className="fas fa-shield-alt" aria-hidden="true"></i> The Scourge of Lordaeron</li>
@@ -124,19 +124,18 @@ export function HomePage({ onNavigate }: HomePageProps) {
                   <li><i className="fas fa-fire" aria-hidden="true"></i> The Battle of Mount Hyjal</li>
                 </ul>
                 <button className="btn-primary-wc btn-sm" onClick={() => onNavigate("story")}>
-                  Read More <i className="fas fa-arrow-right" aria-hidden="true"></i>
+                  {t("common.readMore")} <i className="fas fa-arrow-right" aria-hidden="true"></i>
                 </button>
               </div>
             </div>
             <div className="campaign-card">
               <div className="campaign-card-header" style={{ background: "linear-gradient(135deg, #1a4a7a, #63b3ed)" }}>
                 <i className="fas fa-snowflake campaign-icon" aria-hidden="true"></i>
-                <h3>The Frozen Throne</h3>
+                <h3>{t("story.campaigns.tft.title")}</h3>
               </div>
               <div className="campaign-card-body">
                 <p>
-                  Continue the story as Illidan hunts for power, the Blood Elves seek a new destiny, 
-                  and Arthas races to Northrend to save the Lich King — or become him.
+                  {t("story.campaigns.tft.description")}
                 </p>
                 <ul className="campaign-highlights">
                   <li><i className="fas fa-eye" aria-hidden="true"></i> Terror of the Tides</li>
@@ -145,7 +144,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
                   <li><i className="fas fa-chess-king" aria-hidden="true"></i> The Ascension</li>
                 </ul>
                 <button className="btn-primary-wc btn-sm" onClick={() => onNavigate("story")}>
-                  Read More <i className="fas fa-arrow-right" aria-hidden="true"></i>
+                  {t("common.readMore")} <i className="fas fa-arrow-right" aria-hidden="true"></i>
                 </button>
               </div>
             </div>
@@ -156,10 +155,10 @@ export function HomePage({ onNavigate }: HomePageProps) {
       {/* Call to Action */}
       <section className="home-section cta-section">
         <div className="container cta-content">
-          <h2>Test Your Knowledge</h2>
-          <p>Think you know everything about Warcraft III? Take our quiz and prove it!</p>
+          <h2>{t("home.features.quiz.title")}</h2>
+          <p>{t("home.features.quiz.description")}</p>
           <button className="btn-primary-wc btn-lg" onClick={() => onNavigate("test")}>
-            <i className="fas fa-question-circle" aria-hidden="true"></i> Take the Quiz
+            <i className="fas fa-question-circle" aria-hidden="true"></i> {t("home.hero.cta.secondary")}
           </button>
         </div>
       </section>

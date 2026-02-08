@@ -3628,3 +3628,115 @@ hr {
     font-size: 0.7rem;
   }
 }
+
+/* ===========================
+   LANGUAGE SELECTOR
+   =========================== */
+.language-selector {
+  position: relative;
+  margin-left: 1rem;
+}
+
+.language-selector__button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.75rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: "Raleway", sans-serif;
+}
+
+.language-selector__button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.language-selector__flag {
+  font-size: 1.1rem;
+}
+
+.language-selector__name {
+  font-size: 0.85rem;
+}
+
+.language-selector__icon {
+  font-size: 0.7rem;
+  transition: transform 0.2s;
+}
+
+.language-selector__icon.open {
+  transform: rotate(180deg);
+}
+
+.language-selector__dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0.5rem;
+  background: #1e293b;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  min-width: 140px;
+  padding: 0.5rem 0;
+  z-index: 1002;
+  list-style: none;
+  animation: fadeIn 0.2s ease;
+}
+
+.language-selector__option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.language-selector__option:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.language-selector__option.active {
+  background: rgba(255, 215, 0, 0.1);
+  color: #ffd700;
+}
+
+.language-selector__option .language-selector__flag {
+  font-size: 1.2rem;
+}
+
+.language-selector__option .language-selector__name {
+  font-size: 0.9rem;
+}
+
+/* Mobile responsive for language selector */
+@media (max-width: 991px) {
+  .language-selector {
+    margin-left: 0;
+    margin-top: 1rem;
+    width: 100%;
+  }
+
+  .language-selector__button {
+    width: 100%;
+    justify-content: center;
+    padding: 0.75rem 1rem;
+  }
+
+  .language-selector__dropdown {
+    position: static;
+    margin-top: 0.5rem;
+    box-shadow: none;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+  }
+}
