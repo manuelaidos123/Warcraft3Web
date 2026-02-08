@@ -8,6 +8,7 @@ import { FactionsPage } from "./pages/FactionsPage";
 import { CharactersPage } from "./pages/CharactersPage";
 import { PediaPage } from "./pages/PediaPage";
 import { TestPage } from "./pages/TestPage";
+import { TimelinePage } from "./pages/TimelinePage";
 
 const pageTitles: Record<string, string> = {
   home: "Warcraft III - Home",
@@ -16,6 +17,7 @@ const pageTitles: Record<string, string> = {
   factions: "Warcraft III - Factions",
   characters: "Warcraft III - Characters",
   pedia: "Warcraft III - WarcraftPedia",
+  timeline: "Warcraft III - Interactive Timeline",
   test: "Warcraft III - Knowledge Test",
 };
 
@@ -60,6 +62,8 @@ export default function App() {
         return <CharactersPage />;
       case "pedia":
         return <PediaPage />;
+      case "timeline":
+        return <TimelinePage />;
       case "test":
         return <TestPage />;
       default:
