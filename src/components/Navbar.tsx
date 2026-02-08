@@ -59,11 +59,12 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
               <li className="nav-item dropdown-parent">
                 <a
                   className={`nav-link ${currentPage === "story" ||
-                      currentPage === "guide" ||
-                      currentPage === "timeline" ||
-                      currentPage === "cinematics"
-                      ? "active"
-                      : ""
+                    currentPage === "guide" ||
+                    currentPage === "timeline" ||
+                    currentPage === "cinematics" ||
+                    currentPage === "map"
+                    ? "active"
+                    : ""
                     }`}
                   href="#story"
                   onClick={(e) => {
@@ -137,6 +138,19 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
                     >
                       <i className="fas fa-film" aria-hidden="true" style={{ marginRight: "0.35rem" }}></i>
                       {t("nav.cinematics")}
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      className="dropdown-item"
+                      href="#map"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleNav("map");
+                      }}
+                    >
+                      <i className="fas fa-map-marked-alt" aria-hidden="true" style={{ marginRight: "0.35rem" }}></i>
+                      {t("nav.map")}
                     </a>
                   </li>
                 </ul>

@@ -8,6 +8,7 @@
         "characters": "Personagens",
         "pedia": "WarcraftPedia",
         "cinematics": "Cinemáticas",
+        "map": "Mapa Interativo",
         "test": "Teste de Conhecimento"
     },
     "home": {
@@ -172,6 +173,21 @@
         "correct": "Correto!",
         "incorrect": "Incorreto!",
         "explanation": "Explicação"
+    },
+    "map": {
+        "title": "Mapa Interativo de Azeroth",
+        "subtitle": "Explore o Mundo",
+        "locations": "Localizações",
+        "lore": "História",
+        "relatedCharacters": "Personagens Relacionados",
+        "keyEvents": "Eventos Chave",
+        "legend": "Legenda",
+        "zoomIn": "Aproximar",
+        "zoomOut": "Afastar",
+        "resetView": "Resetar Vista",
+        "filter": {
+            "all": "Todas as Facções"
+        }
     },
     "loreSnippet": {
         "title": "Fragmento de Lore",

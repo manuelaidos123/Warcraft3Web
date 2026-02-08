@@ -10,6 +10,7 @@ import { PediaPage } from "./pages/PediaPage";
 import { TestPage } from "./pages/TestPage";
 import { TimelinePage } from "./pages/TimelinePage";
 import { CinematicsPage } from "./pages/CinematicsPage";
+import { MapPage } from "./pages/MapPage";
 
 const pageTitles: Record<string, string> = {
   home: "Warcraft III - Home",
@@ -20,6 +21,7 @@ const pageTitles: Record<string, string> = {
   pedia: "Warcraft III - WarcraftPedia",
   timeline: "Warcraft III - Interactive Timeline",
   cinematics: "Warcraft III - Cinematics",
+  map: "Warcraft III - Interactive Map",
   test: "Warcraft III - Knowledge Test",
 };
 
@@ -68,6 +70,8 @@ export default function App() {
         return <TimelinePage />;
       case "cinematics":
         return <CinematicsPage />;
+      case "map":
+        return <MapPage />;
       case "test":
         return <TestPage />;
       default:
