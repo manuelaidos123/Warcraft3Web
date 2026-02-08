@@ -2,6 +2,7 @@ import { useState, useCallback } from "react";
 import { characters, factionColors } from "../data/characters";
 import { factions } from "../data/factions";
 import { useParallaxLayers } from "../hooks/useParallax";
+import LoreSnippet from '../components/LoreSnippet';
 
 interface HomePageProps {
   onNavigate: (page: string) => void;
@@ -45,6 +46,9 @@ export function HomePage({ onNavigate }: HomePageProps) {
           </div>
         </div>
       </section>
+
+      {/* Lore Snippet */}
+      <LoreSnippet />
 
       {/* Featured Characters */}
       <section className="home-section">
