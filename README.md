@@ -35,7 +35,7 @@ This project is a fully functional, multi-page web application that serves as an
 
 ## Features
 
-- 🏠 **Landing Page** — Cinematic hero section with animated gradients and call-to-action buttons
+- 🏠 **Landing Page** — Cinematic hero section with animated gradients, call-to-action buttons, and interactive lore snippets
 - 📜 **Campaign Story** — Full narrative of both Reign of Chaos and The Frozen Throne with a visual timeline
 - ⏳ **Interactive Timeline** — Scroll-animated, 21-event visual timeline spanning 10,000+ years across 4 eras with era filtering, click-to-expand event cards, and character artwork
 - 🗺️ **Campaign Guide** — Tabbed strategy guide with faction-specific tips and a quick-reference comparison table
@@ -44,7 +44,8 @@ This project is a fully functional, multi-page web application that serves as an
 - 📚 **WarcraftPedia** — 12-entry encyclopedia covering artifacts, locations, events, and organizations
 - 🎬 **Cinematics & Videos** — Curated gallery of iconic Warcraft III cinematics organized by 12 characters, linking to YouTube searches for each scene
 - ❓ **Knowledge Quiz** — 15 multiple-choice lore questions with scoring, explanations, and full answer review
-- 🖼️ **Real Character Art** — High-quality artwork from the HearthstoneJSON art API
+- 📜 **Lore Snippets** — Interactive carousel of Warcraft III trivia with parchment-style design, navigation controls, and progress indicators
+- �️ **Real Character Art** — High-quality artwork from the HearthstoneJSON art API
 - ♿ **Accessible** — ARIA roles, labels, keyboard navigation, and semantic HTML throughout
 - 🌀 **Parallax Scrolling** — Multi-layer depth effects on all hero sections with floating decorative elements and scroll-based fade-out
 - 📱 **Fully Responsive** — Mobile-first design that works on all screen sizes
