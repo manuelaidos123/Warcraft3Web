@@ -60,6 +60,9 @@ export function Footer({ onNavigate }: FooterProps) {
               <li>
                 <a href="#timeline" onClick={(e) => { e.preventDefault(); onNavigate("timeline"); }}>Timeline</a>
               </li>
+              <li>
+                <a href="#cinematics" onClick={(e) => { e.preventDefault(); onNavigate("cinematics"); }}>Cinematics</a>
+              </li>
             </ul>
           </div>
         </div>

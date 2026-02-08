@@ -42,6 +42,7 @@ This project is a fully functional, multi-page web application that serves as an
 - 🛡️ **Faction Profiles** — Detailed pages for Alliance, Horde, Undead Scourge, and Night Elves with unit rosters
 - 🧙 **Character Gallery** — 12 characters with real artwork, filterable by faction/role, and full-text search
 - 📚 **WarcraftPedia** — 12-entry encyclopedia covering artifacts, locations, events, and organizations
+- 🎬 **Cinematics & Videos** — YouTube video gallery of iconic Warcraft III cinematics organized by character with embedded player
 - ❓ **Knowledge Quiz** — 15 multiple-choice lore questions with scoring, explanations, and full answer review
 - 🖼️ **Real Character Art** — High-quality artwork from the HearthstoneJSON art API
 - ♿ **Accessible** — ARIA roles, labels, keyboard navigation, and semantic HTML throughout
@@ -62,6 +63,7 @@ This project is a fully functional, multi-page web application that serves as an
 | `#factions` | **Factions** | Four faction cards with detailed modals containing lore, leaders, units, and strengths |
 | `#characters` | **Characters** | Filterable/searchable grid of 12 characters with artwork and detail modals |
 | `#pedia` | **WarcraftPedia** | Searchable encyclopedia with 12 entries across 4 categories |
+| `#cinematics` | **Cinematics** | YouTube video gallery of iconic in-game cinematics organized by character |
 | `#test` | **Knowledge Test** | Interactive 15-question quiz with progress tracking and results review |
 
 ---
@@ -93,7 +95,7 @@ This project is a fully functional, multi-page web application that serves as an
 └── src/
     ├── main.tsx                  # React DOM entry point
     ├── App.tsx                   # Root component with hash-based router
-    ├── index.css                 # All global styles (~1800 lines)
+    ├── index.css                 # All global styles (~2400 lines)
     │
     ├── components/
     │   ├── Navbar.tsx            # Shared navigation bar with dropdown
@@ -114,6 +116,7 @@ This project is a fully functional, multi-page web application that serves as an
     │   ├── FactionsPage.tsx      # Faction cards with detail modals
     │   ├── CharactersPage.tsx    # Character grid with filters and modals
     │   ├── PediaPage.tsx         # Encyclopedia with search and category filters
+    │   ├── CinematicsPage.tsx   # YouTube video gallery of character cinematics
     │   └── TestPage.tsx          # Interactive quiz with scoring system
     │
     └── utils/

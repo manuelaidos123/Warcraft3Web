@@ -49,7 +49,7 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
               </li>
               <li className="nav-item dropdown-parent">
                 <a
-                  className={`nav-link ${currentPage === "story" || currentPage === "guide" || currentPage === "timeline" ? "active" : ""}`}
+                  className={`nav-link ${currentPage === "story" || currentPage === "guide" || currentPage === "timeline" || currentPage === "cinematics" ? "active" : ""}`}
                   href="#story"
                   onClick={(e) => { e.preventDefault(); handleNav("story"); }}
                 >
@@ -64,7 +64,12 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
                   <li><hr className="dropdown-divider" /></li>
                   <li>
                     <a className="dropdown-item" href="#story-reign" onClick={(e) => { e.preventDefault(); handleNav("story"); }}>
-                      Reign of Chaos and Frozen Throne
+                      Reign of Chaos
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" href="#story-frozen" onClick={(e) => { e.preventDefault(); handleNav("story"); }}>
+                      The Frozen Throne
                     </a>
                   </li>
                   <li><hr className="dropdown-divider" /></li>
@@ -78,6 +83,12 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
                     <a className="dropdown-item" href="#timeline" onClick={(e) => { e.preventDefault(); handleNav("timeline"); }}>
                       <i className="fas fa-hourglass-half" aria-hidden="true" style={{ marginRight: "0.35rem" }}></i>
                       Interactive Timeline
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" href="#cinematics" onClick={(e) => { e.preventDefault(); handleNav("cinematics"); }}>
+                      <i className="fas fa-film" aria-hidden="true" style={{ marginRight: "0.35rem" }}></i>
+                      Cinematics & Videos
                     </a>
                   </li>
                 </ul>
@@ -120,6 +131,16 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
                   {...(currentPage === "timeline" ? { "aria-current": "page" as const } : {})}
                 >
                   Timeline
+                </a>
+              </li>
+              <li className="nav-item">
+                <a
+                  className={`nav-link ${currentPage === "cinematics" ? "active" : ""}`}
+                  href="#cinematics"
+                  onClick={(e) => { e.preventDefault(); handleNav("cinematics"); }}
+                  {...(currentPage === "cinematics" ? { "aria-current": "page" as const } : {})}
+                >
+                  Cinematics
                 </a>
               </li>
               <li className="nav-item">
